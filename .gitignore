@@ -1,0 +1,6 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local dev server config (paths are machine-specific)
+.claude/
