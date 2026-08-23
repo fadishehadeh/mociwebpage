@@ -27,7 +27,7 @@
             var input = newsletterForm.querySelector("input");
             if (input && input.value) {
                 input.value = "";
-                input.placeholder = "تم الاشتراك بنجاح، شكراً لك!";
+                input.placeholder = input.getAttribute("data-success-label") || "Subscribed successfully, thank you!";
             }
         });
     }
@@ -62,7 +62,10 @@
                 group.classList.toggle("is-hidden", !hasVisible);
             });
             if (noResults) noResults.classList.toggle("is-visible", visible === 0);
-            if (countEl) countEl.textContent = visible + " من " + cards.length + " إدارة";
+            if (countEl) {
+                var template = countEl.getAttribute("data-template") || "{n} / {total}";
+                countEl.textContent = template.replace("{n}", visible).replace("{total}", cards.length);
+            }
         };
 
         pills.forEach(function (pill) {

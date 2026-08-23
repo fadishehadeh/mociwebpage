@@ -2,12 +2,9 @@
 /**
  * Local build tool — NOT part of the shipped site.
  *
- * Landing page (index.html): introduces this as a redesign concept for
- * the Ministry of Commerce and Industry's departments page, and offers
- * two design directions to explore. Same header/footer as the rest of
- * the site so it feels like one connected package.
+ * English mirror of generate-landing.php.
  *
- * Run with: php _build/generate-landing.php
+ * Run with: php _build/generate-landing-en.php
  */
 
 $root = dirname(__DIR__);
@@ -19,21 +16,21 @@ function e(string $s): string
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
-function render_header(bool $active, string $enHref = 'en/index.html'): string
+function render_header(bool $active, string $arHref = '../index.html'): string
 {
     return <<<HTML
-<a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
     <div class="utility-bar">
         <div class="container utility-bar__inner">
-            <button type="button" class="icon-btn" aria-label="خيارات إتاحة الوصول">
+            <button type="button" class="icon-btn" aria-label="Accessibility options">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M4 8.5 12 10l8-1.5M12 10v5m0 0-3 7m3-7 3 7"/></svg>
             </button>
-            <button type="button" class="icon-btn" aria-label="حسابي">
+            <button type="button" class="icon-btn" aria-label="My account">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6"/></svg>
             </button>
-            <a class="icon-btn lang-switch" href="{$enHref}" aria-label="Switch to English">EN</a>
-            <button type="button" class="icon-btn" aria-label="بحث">
+            <a class="icon-btn lang-switch" href="{$arHref}" aria-label="التبديل إلى العربية">AR</a>
+            <button type="button" class="icon-btn" aria-label="Search">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
             </button>
         </div>
@@ -43,24 +40,24 @@ function render_header(bool $active, string $enHref = 'en/index.html'): string
         <a href="index.html" class="brand">
             <span class="brand__crest" aria-hidden="true">MOCI</span>
             <span class="brand__text">
-                <span class="brand__title">وزارة التجارة والصناعة</span><br>
-                <span class="brand__subtitle">Ministry of Commerce and Industry</span>
+                <span class="brand__title">Ministry of Commerce and Industry</span><br>
+                <span class="brand__subtitle">State of Qatar</span>
             </span>
         </a>
 
-        <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
             <ul class="main-nav__list">
-                <li class="is-active"><a href="index.html">الرئيسية</a></li>
-                <li><a href="ministry-departments.html">عن الوزارة</a></li>
-                <li><a href="#">مركز الخدمات</a></li>
-                <li><a href="#">الخدمات الإلكترونية</a></li>
-                <li><a href="#">المركز الإعلامي</a></li>
-                <li><a href="#">استثمر في قطر</a></li>
-                <li><a href="#">النافذة الواحدة</a></li>
+                <li class="is-active"><a href="index.html">Home</a></li>
+                <li><a href="ministry-departments.html">About the Ministry</a></li>
+                <li><a href="#">Services Center</a></li>
+                <li><a href="#">E-Services</a></li>
+                <li><a href="#">Media Center</a></li>
+                <li><a href="#">Invest in Qatar</a></li>
+                <li><a href="#">Single Window</a></li>
             </ul>
         </nav>
 
-        <button type="button" class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mainNav">
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
     </div>
@@ -102,50 +99,50 @@ function render_footer(): string
 
     <div class="container footer-columns">
         <div>
-            <h3>المركز الإعلامي</h3>
+            <h3>Media Center</h3>
             <ul>
-                <li><a href="#">أخبار</a></li>
-                <li><a href="#">النماذج والتقارير</a></li>
-                <li><a href="#">موارد</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Forms &amp; Reports</a></li>
+                <li><a href="#">Resources</a></li>
             </ul>
         </div>
         <div>
-            <h3>استثمر في قطر</h3>
+            <h3>Invest in Qatar</h3>
             <ul>
-                <li><a href="#">لماذا قطر</a></li>
-                <li><a href="#">خطوات الاستثمار</a></li>
-                <li><a href="#">الشراكات الدولية</a></li>
+                <li><a href="#">Why Qatar</a></li>
+                <li><a href="#">Investment Steps</a></li>
+                <li><a href="#">International Partnerships</a></li>
             </ul>
         </div>
         <div>
-            <h3>مركز الخدمات</h3>
+            <h3>Services Center</h3>
             <ul>
-                <li><a href="#">خدمات المستهلك</a></li>
-                <li><a href="#">منصة خدمات الصناعة</a></li>
-                <li><a href="#">خدمات المستثمر المحلي</a></li>
+                <li><a href="#">Consumer Services</a></li>
+                <li><a href="#">Industry Services Platform</a></li>
+                <li><a href="#">Local Investor Services</a></li>
             </ul>
         </div>
         <div>
-            <h3>عن الوزارة</h3>
+            <h3>About the Ministry</h3>
             <ul>
-                <li><a href="ministry-departments.html">إدارات الوزارة (الخيار 1)</a></li>
-                <li><a href="ministry-departments-directory.html">إدارات الوزارة (الخيار 2)</a></li>
-                <li><a href="#">اتصل بنا</a></li>
+                <li><a href="ministry-departments.html">Ministry Departments (Option 1)</a></li>
+                <li><a href="ministry-departments-directory.html">Ministry Departments (Option 2)</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
     </div>
 
     <div class="container footer-bottom">
-        <span>© {$year} وزارة التجارة والصناعة. جميع الحقوق محفوظة.</span>
+        <span>&copy; {$year} Ministry of Commerce and Industry. All rights reserved.</span>
         <div class="footer-legal">
-            <a href="#">خريطة الموقع</a>
-            <a href="#">شروط الاستخدام</a>
-            <a href="#">سياسة الخصوصية</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
         </div>
     </div>
 </footer>
 
-<button type="button" class="back-to-top" id="backToTop" aria-label="العودة إلى الأعلى">
+<button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 HTML;
@@ -157,17 +154,17 @@ $footer = render_footer();
 $body = <<<HTML
 {$header}
 <main id="main">
-    <section class="hero" style="background-image: url('assets/img/hero-departments.png');">
+    <section class="hero" style="background-image: url('../assets/img/hero-departments.png');">
         <div class="container hero__inner">
-            <h1 class="hero__title">إعادة تصميم صفحة إدارات الوزارة</h1>
-            <p class="hero__subtitle">مفهومان مختلفان لإعادة تصميم صفحة إدارات وزارة التجارة والصناعة، بنفس الهوية البصرية ونفس المحتوى — اختر أحدهما لاستعراضه.</p>
+            <h1 class="hero__title">Redesigning the Ministry Departments Page</h1>
+            <p class="hero__subtitle">Two different concepts for redesigning the Ministry of Commerce and Industry's departments page, sharing the same visual identity and content &mdash; choose one to explore.</p>
         </div>
     </section>
 
     <div class="container">
         <div class="options-intro">
-            <h1>اختر أحد التصميمين</h1>
-            <p>كلا الخيارين يعرضان نفس إدارات الوزارة الـ 21 بنفس الألوان والخطوط، لكن بأسلوب تصفح مختلف. جرّب كليهما وأخبرنا بالأنسب.</p>
+            <h1>Choose a design</h1>
+            <p>Both options present the same 21 ministry departments with the same colors and typography, but a different browsing style. Try both and let us know which works best.</p>
         </div>
 
         <div class="options-grid">
@@ -175,11 +172,11 @@ $body = <<<HTML
                 <div class="option-preview option-preview--cards">
                     <span></span><span></span><span></span><span></span>
                 </div>
-                <span class="option-card__badge">الخيار الأول</span>
-                <h2 class="option-card__title">عرض البطاقات</h2>
-                <p class="option-card__desc">شبكة من البطاقات المصغّرة لكل إدارة، مع تصنيفات وبحث سريع. مناسب لتصفح بصري سريع يشبه واجهات المتاجر.</p>
+                <span class="option-card__badge">Option 1</span>
+                <h2 class="option-card__title">Card Grid</h2>
+                <p class="option-card__desc">A grid of compact cards for each department, with categories and quick search. Suited for fast visual browsing, like a storefront layout.</p>
                 <a class="btn btn-primary" href="ministry-departments.html">
-                    استعراض الخيار الأول
+                    Explore Option 1
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
                 </a>
             </article>
@@ -188,11 +185,11 @@ $body = <<<HTML
                 <div class="option-preview option-preview--list">
                     <span></span><span></span><span></span><span></span>
                 </div>
-                <span class="option-card__badge">الخيار الثاني</span>
-                <h2 class="option-card__title">الدليل التنظيمي</h2>
-                <p class="option-card__desc">دليل مُقسّم إلى أقسام بحسب طبيعة العمل، بصفوف مضغوطة تتيح استعراض كل الإدارات الـ 21 دون كثير من التمرير.</p>
+                <span class="option-card__badge">Option 2</span>
+                <h2 class="option-card__title">Organizational Directory</h2>
+                <p class="option-card__desc">A directory grouped into sections by function, with compact rows that let you scan all 21 departments with minimal scrolling.</p>
                 <a class="btn btn-primary" href="ministry-departments-directory.html">
-                    استعراض الخيار الثاني
+                    Explore Option 2
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
                 </a>
             </article>
@@ -204,12 +201,12 @@ HTML;
 
 $html = <<<HTML
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مفهوم إعادة تصميم – وزارة التجارة والصناعة</title>
-<meta name="description" content="مفهوم إعادة تصميم صفحة إدارات وزارة التجارة والصناعة بخيارين مختلفين.">
+<title>Redesign Concept &ndash; Ministry of Commerce and Industry</title>
+<meta name="description" content="A redesign concept for the Ministry of Commerce and Industry's departments page, with two design directions to explore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -226,5 +223,5 @@ $html = <<<HTML
 </html>
 HTML;
 
-file_put_contents($root . '/index.html', $html);
-echo "Wrote index.html\n";
+file_put_contents($root . '/en/index.html', $html);
+echo "Wrote en/index.html\n";

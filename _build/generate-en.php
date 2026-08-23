@@ -2,36 +2,32 @@
 /**
  * Local build tool — NOT part of the shipped site.
  *
- * Reads the scraped department data + the shared CSS/JS sources and emits
- * fully self-contained static HTML files (inline <style>/<script>, no PHP,
- * no external stylesheet) at the project root:
- *   - ministry-departments.html
- *   - dept-1.html ... dept-21.html
+ * English mirror of generate.php. Reads the scraped English department
+ * data + the SAME shared CSS/JS sources (dir="ltr" is handled by the
+ * LTR override rules already in style.css) and emits self-contained
+ * static HTML files under /en/:
+ *   - en/ministry-departments.html
+ *   - en/dept-1.html ... en/dept-21.html
  *
- * Run with: php _build/generate.php
+ * Run with: php _build/generate-en.php
  */
 
 $root = dirname(__DIR__);
 
-$rawJson = file_get_contents($root . '/data/departments_raw.json');
+$rawJson = file_get_contents($root . '/data/departments_en.json');
 $raw = json_decode($rawJson, true);
 if (!$raw) {
-    fwrite(STDERR, "Could not read/parse departments_raw.json\n");
+    fwrite(STDERR, "Could not read/parse departments_en.json\n");
     exit(1);
 }
 
-/**
- * Thematic groupings (authored by us for navigability — the old site's
- * "reports to which undersecretary" org-chart labels are bureaucratic
- * mouthfuls and not reliably inferable from the scraped URLs, so these
- * are grouped by what the department actually does instead).
- */
+/** Same order->category mapping as the Arabic build — content is bilingual, structure isn't. */
 $categories = [
-    'office-legal' => ['label' => 'مكتب الوزير والشؤون القانونية', 'orders' => [1, 2, 3, 6]],
-    'trade-corporate' => ['label' => 'التجارة وشؤون الشركات', 'orders' => [4, 7, 8, 9]],
-    'industry-investment' => ['label' => 'الصناعة وتنمية الأعمال والاستثمار', 'orders' => [10, 11, 12, 15]],
-    'consumer-markets' => ['label' => 'حماية المستهلك ومراقبة الأسواق', 'orders' => [13, 14, 17, 18]],
-    'corporate-support' => ['label' => 'الخدمات المؤسسية والدعم', 'orders' => [5, 16, 19, 20, 21]],
+    'office-legal' => ['label' => "Minister's Office & Legal Affairs", 'orders' => [1, 2, 3, 6]],
+    'trade-corporate' => ['label' => 'Trade & Corporate Affairs', 'orders' => [4, 7, 8, 9]],
+    'industry-investment' => ['label' => 'Industry, Business & Investment', 'orders' => [10, 11, 12, 15]],
+    'consumer-markets' => ['label' => 'Consumer Protection & Market Oversight', 'orders' => [13, 14, 17, 18]],
+    'corporate-support' => ['label' => 'Corporate & Support Services', 'orders' => [5, 16, 19, 20, 21]],
 ];
 
 $orderToCategory = [];
@@ -54,7 +50,7 @@ foreach ($raw as $row) {
     $departments[] = [
         'order' => $row['order'],
         'slug' => 'dept-' . $row['order'],
-        'title' => $row['canonical_title'],
+        'title' => $row['english_title'],
         'tasks' => $row['responsibilities'],
         'category' => $orderToCategory[$row['order']],
     ];
@@ -69,10 +65,7 @@ function e(string $s): string
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * @param array $breadcrumbs [['label'=>..., 'href'=>...], ..., ['label'=>'current']]
- */
-function render_header(array $breadcrumbs, bool $active, string $enHref = 'en/ministry-departments.html'): string
+function render_header(array $breadcrumbs, bool $active, string $arHref = '../ministry-departments.html'): string
 {
     $activeClass = $active ? 'is-active' : '';
     $crumbsHtml = '';
@@ -86,18 +79,18 @@ function render_header(array $breadcrumbs, bool $active, string $enHref = 'en/mi
     }
 
     return <<<HTML
-<a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
     <div class="utility-bar">
         <div class="container utility-bar__inner">
-            <button type="button" class="icon-btn" aria-label="خيارات إتاحة الوصول">
+            <button type="button" class="icon-btn" aria-label="Accessibility options">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M4 8.5 12 10l8-1.5M12 10v5m0 0-3 7m3-7 3 7"/></svg>
             </button>
-            <button type="button" class="icon-btn" aria-label="حسابي">
+            <button type="button" class="icon-btn" aria-label="My account">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6"/></svg>
             </button>
-            <a class="icon-btn lang-switch" href="{$enHref}" aria-label="Switch to English">EN</a>
-            <button type="button" class="icon-btn" aria-label="بحث">
+            <a class="icon-btn lang-switch" href="{$arHref}" aria-label="التبديل إلى العربية">AR</a>
+            <button type="button" class="icon-btn" aria-label="Search">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
             </button>
         </div>
@@ -107,24 +100,24 @@ function render_header(array $breadcrumbs, bool $active, string $enHref = 'en/mi
         <a href="index.html" class="brand">
             <span class="brand__crest" aria-hidden="true">MOCI</span>
             <span class="brand__text">
-                <span class="brand__title">وزارة التجارة والصناعة</span><br>
-                <span class="brand__subtitle">Ministry of Commerce and Industry</span>
+                <span class="brand__title">Ministry of Commerce and Industry</span><br>
+                <span class="brand__subtitle">State of Qatar</span>
             </span>
         </a>
 
-        <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
             <ul class="main-nav__list">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li class="{$activeClass}"><a href="ministry-departments.html">عن الوزارة</a></li>
-                <li><a href="#">مركز الخدمات</a></li>
-                <li><a href="#">الخدمات الإلكترونية</a></li>
-                <li><a href="#">المركز الإعلامي</a></li>
-                <li><a href="#">استثمر في قطر</a></li>
-                <li><a href="#">النافذة الواحدة</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="{$activeClass}"><a href="ministry-departments.html">About the Ministry</a></li>
+                <li><a href="#">Services Center</a></li>
+                <li><a href="#">E-Services</a></li>
+                <li><a href="#">Media Center</a></li>
+                <li><a href="#">Invest in Qatar</a></li>
+                <li><a href="#">Single Window</a></li>
             </ul>
         </nav>
 
-        <button type="button" class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mainNav">
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
     </div>
@@ -133,10 +126,10 @@ function render_header(array $breadcrumbs, bool $active, string $enHref = 'en/mi
         <div class="container breadcrumb-bar__inner">
             <a class="breadcrumb-back" href="ministry-departments.html">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                العودة إلى عن الوزارة
+                Back to About the Ministry
             </a>
             <div class="breadcrumb-trail">
-                <a href="index.html">الرئيسية</a>
+                <a href="index.html">Home</a>
                 {$crumbsHtml}
             </div>
         </div>
@@ -179,55 +172,55 @@ function render_footer(): string
 
     <div class="container footer-columns">
         <div>
-            <h3>المركز الإعلامي</h3>
+            <h3>Media Center</h3>
             <ul>
-                <li><a href="#">أخبار</a></li>
-                <li><a href="#">النماذج والتقارير</a></li>
-                <li><a href="#">موارد</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Forms &amp; Reports</a></li>
+                <li><a href="#">Resources</a></li>
             </ul>
         </div>
         <div>
-            <h3>استثمر في قطر</h3>
+            <h3>Invest in Qatar</h3>
             <ul>
-                <li><a href="#">لماذا قطر</a></li>
-                <li><a href="#">خطوات الاستثمار</a></li>
-                <li><a href="#">الشراكات الدولية</a></li>
-                <li><a href="#">برنامج الشراكة بين القطاعين الحكومي والخاص</a></li>
-                <li><a href="#">مشاريع الشراكة</a></li>
+                <li><a href="#">Why Qatar</a></li>
+                <li><a href="#">Investment Steps</a></li>
+                <li><a href="#">International Partnerships</a></li>
+                <li><a href="#">Public-Private Partnership Program</a></li>
+                <li><a href="#">Partnership Projects</a></li>
             </ul>
         </div>
         <div>
-            <h3>مركز الخدمات</h3>
+            <h3>Services Center</h3>
             <ul>
-                <li><a href="#">خدمات المستهلك</a></li>
-                <li><a href="#">منصة خدمات الصناعة</a></li>
-                <li><a href="#">خدمات المستثمر المحلي</a></li>
+                <li><a href="#">Consumer Services</a></li>
+                <li><a href="#">Industry Services Platform</a></li>
+                <li><a href="#">Local Investor Services</a></li>
             </ul>
         </div>
         <div>
-            <h3>عن الوزارة</h3>
+            <h3>About the Ministry</h3>
             <ul>
-                <li><a href="#">الرؤية والرسالة والقيم</a></li>
-                <li><a href="#">استراتيجية الوزارة</a></li>
-                <li><a href="#">الهيكل التنظيمي</a></li>
-                <li><a href="ministry-departments.html">إدارات الوزارة</a></li>
-                <li><a href="#">اللجان الوطنية</a></li>
-                <li><a href="#">اتصل بنا</a></li>
+                <li><a href="#">Vision, Mission &amp; Values</a></li>
+                <li><a href="#">Ministry Strategy</a></li>
+                <li><a href="#">Organizational Structure</a></li>
+                <li><a href="ministry-departments.html">Ministry Departments</a></li>
+                <li><a href="#">National Committees</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
     </div>
 
     <div class="container footer-bottom">
-        <span>© {$year} وزارة التجارة والصناعة. جميع الحقوق محفوظة.</span>
+        <span>&copy; {$year} Ministry of Commerce and Industry. All rights reserved.</span>
         <div class="footer-legal">
-            <a href="#">خريطة الموقع</a>
-            <a href="#">شروط الاستخدام</a>
-            <a href="#">سياسة الخصوصية</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
         </div>
     </div>
 </footer>
 
-<button type="button" class="back-to-top" id="backToTop" aria-label="العودة إلى الأعلى">
+<button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 HTML;
@@ -238,7 +231,7 @@ function render_floating_menu_button(): string
     return <<<HTML
 <a href="index.html" class="floating-menu-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-    <span>القائمة الرئيسية</span>
+    <span>Main Menu</span>
 </a>
 HTML;
 }
@@ -247,7 +240,7 @@ function page_shell(string $title, string $description, string $bodyHtml, string
 {
     return <<<HTML
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -279,6 +272,7 @@ foreach ($departments as $dept) {
     $categoryLabel = $categories[$dept['category']]['label'];
     $categoryIcon = $categoryIcons[$dept['category']];
     $searchBlob = e(mb_strtolower($dept['title'] . ' ' . implode(' ', $dept['tasks']), 'UTF-8'));
+    $respWord = $totalTasks === 1 ? 'responsibility' : 'responsibilities';
 
     $cardsHtml .= <<<HTML
                 <article class="dept-card" data-searchable data-category="{$dept['category']}" data-search="{$searchBlob}">
@@ -289,21 +283,21 @@ foreach ($departments as $dept) {
                     </h2>
                     <div class="dept-card__more">
                         <a class="dept-card__more-link" href="{$href}">
-                            عرض التفاصيل
+                            View details
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         </a>
-                        <span class="dept-card__count">{$totalTasks} اختصاصات</span>
+                        <span class="dept-card__count">{$totalTasks} {$respWord}</span>
                     </div>
                 </article>
 HTML;
 }
 
-$pillsHtml = '<button type="button" class="filter-pill is-active" data-category="all">جميع الإدارات</button>';
+$pillsHtml = '<button type="button" class="filter-pill is-active" data-category="all">All Departments</button>';
 foreach ($categories as $key => $cat) {
     $pillsHtml .= '<button type="button" class="filter-pill" data-category="' . $key . '">' . e($cat['label']) . '</button>';
 }
 
-$header = render_header([['label' => 'عن الوزارة', 'href' => '#'], ['label' => 'الإدارات']], true, 'en/ministry-departments.html');
+$header = render_header([['label' => 'About the Ministry', 'href' => '#'], ['label' => 'Departments']], true);
 $footer = render_footer();
 $floatingMenu = render_floating_menu_button();
 
@@ -311,10 +305,10 @@ $body = <<<HTML
 {$header}
 {$floatingMenu}
 <main id="main">
-    <section class="hero" style="background-image: url('assets/img/hero-departments.png');">
+    <section class="hero" style="background-image: url('../assets/img/hero-departments.png');">
         <div class="container hero__inner">
-            <h1 class="hero__title">إدارات الوزارة</h1>
-            <p class="hero__subtitle">إدارات وزارة التجارة والصناعة ومسؤولياتها.</p>
+            <h1 class="hero__title">Ministry Departments</h1>
+            <p class="hero__subtitle">The departments of the Ministry of Commerce and Industry and their responsibilities.</p>
         </div>
     </section>
 
@@ -322,13 +316,13 @@ $body = <<<HTML
         <div class="container filter-bar__inner">
             <div class="filter-search">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="search" id="deptSearch" placeholder="ابحث باسم الإدارة أو اختصاصها...">
+                <input type="search" id="deptSearch" placeholder="Search by department name or responsibility...">
             </div>
             <div class="filter-bar__row">
                 <div class="filter-pills">
                     {$pillsHtml}
                 </div>
-                <span class="filter-count" data-template="{n} من {total} إدارة"></span>
+                <span class="filter-count" data-template="{n} of {total} departments"></span>
             </div>
         </div>
     </div>
@@ -339,8 +333,8 @@ $body = <<<HTML
 {$cardsHtml}
             </div>
             <div class="no-results">
-                <strong>لا توجد نتائج مطابقة</strong>
-                <span>جرّب كلمة بحث مختلفة أو اختر تصنيفاً آخر.</span>
+                <strong>No matching results</strong>
+                <span>Try a different search term or choose another category.</span>
             </div>
         </div>
     </section>
@@ -348,13 +342,13 @@ $body = <<<HTML
     <section class="newsletter">
         <div class="container newsletter__inner">
             <div>
-                <h2 class="newsletter__title">انضم إلينا</h2>
-                <p class="newsletter__text">ابق على اتصال مع وزارة التجارة والصناعة في قطر. انضم إلى مجتمع متنامٍ من المستثمرين والشركاء والمبتكرين الذين يصنعون المستقبل.</p>
+                <h2 class="newsletter__title">Join Us</h2>
+                <p class="newsletter__text">Stay connected with the Ministry of Commerce and Industry in Qatar. Join a growing community of investors, partners, and innovators shaping the future.</p>
             </div>
             <form class="newsletter__form">
-                <label class="visually-hidden" for="newsletterEmail">عنوان بريدك الإلكتروني</label>
-                <input class="newsletter__input" type="email" id="newsletterEmail" placeholder="عنوان بريدك الإلكتروني" data-success-label="تم الاشتراك بنجاح، شكراً لك!" required>
-                <button type="submit" class="btn btn-light">اشترك</button>
+                <label class="visually-hidden" for="newsletterEmail">Your email address</label>
+                <input class="newsletter__input" type="email" id="newsletterEmail" placeholder="Your email address" required>
+                <button type="submit" class="btn btn-light">Subscribe</button>
             </form>
         </div>
     </section>
@@ -362,9 +356,9 @@ $body = <<<HTML
 {$footer}
 HTML;
 
-$html = page_shell('إدارات الوزارة – وزارة التجارة والصناعة', 'إدارات وزارة التجارة والصناعة ومسؤولياتها.', $body, $css, $js);
-file_put_contents($root . '/ministry-departments.html', $html);
-echo "Wrote ministry-departments.html\n";
+$html = page_shell('Ministry Departments &ndash; Ministry of Commerce and Industry', 'The departments of the Ministry of Commerce and Industry and their responsibilities.', $body, $css, $js);
+file_put_contents($root . '/en/ministry-departments.html', $html);
+echo "Wrote en/ministry-departments.html\n";
 
 /* ---------------------------- Detail pages ---------------------------- */
 
@@ -379,7 +373,6 @@ $total = count($orders);
 foreach ($departments as $index => $dept) {
     $totalTasks = count($dept['tasks']);
 
-    // Sidebar grouped by category, current department's group expanded.
     $sideHtml = '';
     foreach ($categories as $catKey => $cat) {
         $itemsHtml = '';
@@ -413,14 +406,13 @@ HTML;
     $showMoreHtml = '';
     if ($isLong) {
         $showMoreHtml = <<<HTML
-                <button type="button" class="show-more-btn" data-show-label="عرض جميع الاختصاصات" data-hide-label="عرض أقل">
-                    <span>عرض جميع الاختصاصات</span>
+                <button type="button" class="show-more-btn" data-show-label="View all responsibilities" data-hide-label="View less">
+                    <span>View all responsibilities</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
 HTML;
     }
 
-    // Prev/next department, wrapping around the full 21-department order.
     $pos = array_search($dept['order'], $orders, true);
     $prevOrder = $orders[($pos - 1 + $total) % $total];
     $nextOrder = $orders[($pos + 1) % $total];
@@ -428,17 +420,17 @@ HTML;
     $nextDept = $byOrder[$nextOrder];
 
     $navHtml = <<<HTML
-                <nav class="detail-nav" aria-label="التنقل بين الإدارات">
+                <nav class="detail-nav" aria-label="Navigate between departments">
                     <a class="detail-nav__link detail-nav__link--prev" href="{$prevDept['slug']}.html">
                         <span class="detail-nav__eyebrow">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg>
-                            الإدارة السابقة
+                            Previous Department
                         </span>
                         <span class="detail-nav__title">{$prevDept['title']}</span>
                     </a>
                     <a class="detail-nav__link detail-nav__link--next" href="{$nextDept['slug']}.html">
                         <span class="detail-nav__eyebrow">
-                            الإدارة التالية
+                            Next Department
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                         </span>
                         <span class="detail-nav__title">{$nextDept['title']}</span>
@@ -447,13 +439,13 @@ HTML;
 HTML;
 
     $header = render_header([
-        ['label' => 'عن الوزارة', 'href' => '#'],
-        ['label' => 'الإدارات', 'href' => 'ministry-departments.html'],
+        ['label' => 'About the Ministry', 'href' => '#'],
+        ['label' => 'Departments', 'href' => 'ministry-departments.html'],
         ['label' => $dept['title']],
-    ], true, 'en/' . $dept['slug'] . '.html');
+    ], true, '../' . $dept['slug'] . '.html');
     $footer = render_footer();
     $floatingMenu = render_floating_menu_button();
-    $suffix = $totalTasks !== 1 ? 'اً' : '';
+    $respWord = $totalTasks === 1 ? 'responsibility' : 'responsibilities';
     $categoryLabel = $categories[$dept['category']]['label'];
 
     $body = <<<HTML
@@ -463,7 +455,7 @@ HTML;
     <section class="detail">
         <div class="container detail__layout">
             <aside class="detail-side">
-                <h2>إدارات الوزارة</h2>
+                <h2>Ministry Departments</h2>
                 {$sideHtml}
             </aside>
 
@@ -472,9 +464,9 @@ HTML;
                     <div>
                         <span class="dept-card__category">{$categoryLabel}</span>
                         <h1 class="detail-main__title">{$dept['title']}</h1>
-                        <p class="detail-main__meta">الاختصاصات والمسؤوليات المنوطة بهذه الإدارة</p>
+                        <p class="detail-main__meta">The responsibilities entrusted to this department</p>
                     </div>
-                    <span class="detail-main__badge">{$totalTasks} اختصاص{$suffix}</span>
+                    <span class="detail-main__badge">{$totalTasks} {$respWord}</span>
                 </header>
 
                 <div class="responsibility-list-wrap{$wrapClass}"{$isLongAttr}>
@@ -493,14 +485,14 @@ HTML;
 HTML;
 
     $html = page_shell(
-        e($dept['title']) . ' – وزارة التجارة والصناعة',
-        'اختصاصات ومسؤوليات ' . e($dept['title']) . ' في وزارة التجارة والصناعة.',
+        e($dept['title']) . ' &ndash; Ministry of Commerce and Industry',
+        'Responsibilities of the ' . e($dept['title']) . ' at the Ministry of Commerce and Industry.',
         $body,
         $css,
         $js
     );
-    file_put_contents($root . '/' . $dept['slug'] . '.html', $html);
-    echo "Wrote {$dept['slug']}.html ({$totalTasks} items)\n";
+    file_put_contents($root . '/en/' . $dept['slug'] . '.html', $html);
+    echo "Wrote en/{$dept['slug']}.html ({$totalTasks} items)\n";
 }
 
-echo "\nDone. " . (count($departments) + 1) . " static HTML files generated.\n";
+echo "\nDone. " . (count($departments) + 1) . " English static HTML files generated.\n";

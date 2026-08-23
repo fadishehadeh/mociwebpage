@@ -1526,6 +1526,25 @@ ul {
     }
 }
 
+/* ---------------------------------- LTR (English) ----------------------------------- */
+/* "Forward/next" chevrons are mirrored for RTL reading direction above; in LTR they
+   should point the natural (unflipped) way instead. "Back/previous" icons already use
+   the unflipped base and are correct in both directions, so they need no override. */
+
+html[dir="ltr"] .dept-card__more-link svg,
+html[dir="ltr"] .directory__row-arrow,
+html[dir="ltr"] .detail-nav__link--next .detail-nav__eyebrow svg {
+    transform: none;
+}
+
+html[dir="ltr"] .dept-card__more-link:hover svg {
+    transform: translateX(3px);
+}
+
+html[dir="ltr"] .directory__row:hover .directory__row-arrow {
+    transform: translateX(3px);
+}
+
 </style>
 </head>
 <body>
@@ -1539,7 +1558,7 @@ ul {
             <button type="button" class="icon-btn" aria-label="حسابي">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.6-4 5-6 8-6s6.4 2 8 6"/></svg>
             </button>
-            <a class="icon-btn lang-switch" href="#" aria-label="Switch to English">EN</a>
+            <a class="icon-btn lang-switch" href="en/ministry-departments-directory.html" aria-label="Switch to English">EN</a>
             <button type="button" class="icon-btn" aria-label="بحث">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
             </button>
@@ -1607,7 +1626,7 @@ ul {
                 <div class="filter-pills">
                     <button type="button" class="filter-pill is-active" data-category="all">جميع الإدارات</button><button type="button" class="filter-pill" data-category="office-legal">مكتب الوزير والشؤون القانونية</button><button type="button" class="filter-pill" data-category="trade-corporate">التجارة وشؤون الشركات</button><button type="button" class="filter-pill" data-category="industry-investment">الصناعة وتنمية الأعمال والاستثمار</button><button type="button" class="filter-pill" data-category="consumer-markets">حماية المستهلك ومراقبة الأسواق</button><button type="button" class="filter-pill" data-category="corporate-support">الخدمات المؤسسية والدعم</button>
                 </div>
-                <span class="filter-count"></span>
+                <span class="filter-count" data-template="{n} من {total} إدارة"></span>
             </div>
         </div>
     </div>
@@ -1782,7 +1801,7 @@ ul {
             </div>
             <form class="newsletter__form">
                 <label class="visually-hidden" for="newsletterEmail">عنوان بريدك الإلكتروني</label>
-                <input class="newsletter__input" type="email" id="newsletterEmail" placeholder="عنوان بريدك الإلكتروني" required>
+                <input class="newsletter__input" type="email" id="newsletterEmail" placeholder="عنوان بريدك الإلكتروني" data-success-label="تم الاشتراك بنجاح، شكراً لك!" required>
                 <button type="submit" class="btn btn-light">اشترك</button>
             </form>
         </div>
@@ -1899,7 +1918,7 @@ ul {
             var input = newsletterForm.querySelector("input");
             if (input && input.value) {
                 input.value = "";
-                input.placeholder = "تم الاشتراك بنجاح، شكراً لك!";
+                input.placeholder = input.getAttribute("data-success-label") || "Subscribed successfully, thank you!";
             }
         });
     }
@@ -1934,7 +1953,10 @@ ul {
                 group.classList.toggle("is-hidden", !hasVisible);
             });
             if (noResults) noResults.classList.toggle("is-visible", visible === 0);
-            if (countEl) countEl.textContent = visible + " من " + cards.length + " إدارة";
+            if (countEl) {
+                var template = countEl.getAttribute("data-template") || "{n} / {total}";
+                countEl.textContent = template.replace("{n}", visible).replace("{total}", cards.length);
+            }
         };
 
         pills.forEach(function (pill) {
