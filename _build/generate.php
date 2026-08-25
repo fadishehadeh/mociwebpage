@@ -27,11 +27,11 @@ if (!$raw) {
  * are grouped by what the department actually does instead).
  */
 $categories = [
-    'office-legal' => ['label' => 'مكتب الوزير والشؤون القانونية', 'orders' => [1, 2, 3, 6]],
+    'office-legal' => ['label' => 'مكتب الوزير ووكيل الوزارة', 'orders' => [1, 2, 3, 5, 6]],
     'trade-corporate' => ['label' => 'التجارة وشؤون الشركات', 'orders' => [4, 7, 8, 9]],
     'industry-investment' => ['label' => 'الصناعة وتنمية الأعمال والاستثمار', 'orders' => [10, 11, 12, 15]],
     'consumer-markets' => ['label' => 'حماية المستهلك ومراقبة الأسواق', 'orders' => [13, 14, 17, 18]],
-    'corporate-support' => ['label' => 'الخدمات المؤسسية والدعم', 'orders' => [5, 16, 19, 20, 21]],
+    'corporate-support' => ['label' => 'الخدمات المؤسسية والدعم', 'orders' => [16, 19, 20, 21]],
 ];
 
 $orderToCategory = [];

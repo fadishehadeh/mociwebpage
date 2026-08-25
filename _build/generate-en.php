@@ -23,11 +23,11 @@ if (!$raw) {
 
 /** Same order->category mapping as the Arabic build — content is bilingual, structure isn't. */
 $categories = [
-    'office-legal' => ['label' => "Minister's Office & Legal Affairs", 'orders' => [1, 2, 3, 6]],
+    'office-legal' => ['label' => "Office of the Minister & Undersecretary", 'orders' => [1, 2, 3, 5, 6]],
     'trade-corporate' => ['label' => 'Trade & Corporate Affairs', 'orders' => [4, 7, 8, 9]],
     'industry-investment' => ['label' => 'Industry, Business & Investment', 'orders' => [10, 11, 12, 15]],
     'consumer-markets' => ['label' => 'Consumer Protection & Market Oversight', 'orders' => [13, 14, 17, 18]],
-    'corporate-support' => ['label' => 'Corporate & Support Services', 'orders' => [5, 16, 19, 20, 21]],
+    'corporate-support' => ['label' => 'Corporate & Support Services', 'orders' => [16, 19, 20, 21]],
 ];
 
 $orderToCategory = [];
