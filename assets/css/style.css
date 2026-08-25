@@ -646,6 +646,22 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     border-color: var(--rose-400);
 }
 
+.dept-card--office {
+    cursor: default;
+    justify-content: center;
+}
+
+.dept-card--office:hover,
+.dept-card--office:focus-within {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+}
+
+.dept-card--office .dept-card__title {
+    margin-bottom: 0;
+}
+
 .dept-card__icon {
     width: 44px;
     height: 44px;
@@ -1135,6 +1151,14 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     color: var(--maroon-800);
 }
 
+.detail-side__office-item {
+    display: block;
+    padding: 10px 4px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-500);
+}
+
 .detail-main {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1449,6 +1473,30 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     background: var(--surface-soft);
 }
 
+.person-card__photo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+    object-fit: unset;
+}
+
+.profile-photo-card__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+    border-radius: var(--radius-md);
+}
+
 .person-card__body {
     padding: 20px 22px 22px;
 }
@@ -1592,6 +1640,114 @@ html[dir="ltr"] .person-card__link:hover svg {
 @media (max-width: 640px) {
     .profile-main {
         padding: 22px;
+    }
+}
+
+/* ---------------------------------- Tabbed leadership -------------------------------- */
+
+.leadership-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px;
+}
+
+.leadership-tab {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-700);
+    background: none;
+    border: 2px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.leadership-tab:hover {
+    background: var(--rose-50, #fdf2f4);
+    color: var(--maroon-800);
+}
+
+.leadership-tab.is-active {
+    background: var(--maroon-800);
+    color: #fff;
+    border-color: var(--maroon-800);
+}
+
+.leadership-panel {
+    display: none;
+}
+
+.leadership-panel.is-active {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.leadership-panel__photo {
+    width: 100%;
+    border-radius: var(--radius-md);
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--surface-soft);
+}
+
+.leadership-panel__photo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+}
+
+.leadership-panel__body h2 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--rose-500);
+    margin: 0 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.leadership-panel__body h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    margin: 0 0 20px;
+}
+
+.leadership-panel__body p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--ink-700);
+    margin: 0 0 14px;
+}
+
+.leadership-panel__body p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .leadership-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .leadership-panel.is-active {
+        grid-template-columns: 1fr;
+    }
+
+    .leadership-panel__photo {
+        max-width: 200px;
     }
 }
 

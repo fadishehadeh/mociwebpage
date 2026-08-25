@@ -67,6 +67,40 @@ $people = [
             'Educationally, Mr. Al-Khulaifi holds a Master of Science in Technology Entrepreneurship (MSc) from University College London (UCL). Additionally, he earned a Bachelor\'s Degree in Business Administration from Carnegie Mellon University.',
         ],
     ],
+    [
+        'slug' => 'saleh-al-mana',
+        'name_ar' => 'صالح عبد الله المانع',
+        'name_en' => 'Saleh Abdulla Al-Mana',
+        'role_ar' => 'وكيل الوزارة المساعد لشؤون التجارة',
+        'role_en' => 'Assistant Undersecretary for Commercial Affairs',
+        'email' => null,
+        'photo' => 'saleh-al-mana.jpg',
+        'bio_ar' => [
+            'يشغل السيد صالح عبد الله المانع حالياً وظيفة وكيل الوزارة المساعد لشؤون التجارة بوزارة التجارة والصناعة، حيث يتولى الإشراف على عدد من الملفات الاستراتيجية، لا سيما السياسات التجارية، وتنظيم الأعمال، وحقوق الملكية الفكرية.',
+            'وقبل تكليفه بهذه المهام، شغل وظيفة مدير إدارة التعاون الدولي والاتفاقيات التجارية، بالإضافة إلى وظيفة مدير إدارة تنمية التبادل التجاري وترويج الاستثمار بوزارة التجارة والصناعة. وفي مرحلة سابقة من مسيرته المهنية، مثّل دولة قطر في عدد من المنظمات الدولية بجنيف، بصفته رئيساً لمكتب دولة قطر لدى منظمة التجارة العالمية والمنظمات الاقتصادية الأخرى، كما عُيّن خلال تلك الفترة نائباً للمندوب الدائم لدولة قطر لدى منظمة التجارة العالمية.',
+            'يحمل السيد صالح عبد الله المانع درجة البكالوريوس في السياسة الدولية من كلية الشؤون الدولية بجامعة جورجتاون في قطر، كما حصل على درجة الماجستير التنفيذي في إدارة الأعمال من جامعة جنيف في سويسرا.',
+        ],
+        'bio_en' => [
+            'Mr. Saleh Abdulla Al-Mana currently serves as the Assistant Undersecretary for Commercial Affairs at the Ministry of Commerce and Industry. In this capacity, he oversees key portfolios related to commercial policy, market regulation, and Intellectual Property Rights.',
+            'Prior to this role, he served as Director of the International Cooperation and Trade Agreements Department, as well as Director of the Trade Exchange Development and Investment Promotion Department at the Ministry. Earlier in his career, he represented the State of Qatar in various International Organizations in Geneva as Head of the Office of the State of Qatar to the World Trade Organization (WTO) and other Economic Organizations. During this period, he was also appointed as Qatar\'s Deputy Permanent Representative to the WTO.',
+            'Mr. Saleh Abdulla Al-Mana holds a Bachelor\'s degree in International Politics from the School of Foreign Service at Georgetown University in Qatar. He further obtained an Executive MBA from the University of Geneva in Switzerland.',
+        ],
+    ],
+    [
+        'slug' => 'undersecretary-4',
+        'name_ar' => 'سيتم الإعلان قريباً',
+        'name_en' => 'To Be Announced',
+        'role_ar' => 'وكيل الوزارة المساعد لشؤون الخدمات المشتركة',
+        'role_en' => 'Assistant Undersecretary for Shared Services',
+        'email' => null,
+        'photo' => null,
+        'bio_ar' => [
+            'سيتم نشر السيرة الذاتية قريباً.',
+        ],
+        'bio_en' => [
+            'Biography coming soon.',
+        ],
+    ],
 ];
 
 function render_header(array $breadcrumbs, bool $active, string $enHref): string
@@ -267,9 +301,15 @@ HTML;
 $cardsHtml = '';
 foreach ($people as $p) {
     $href = $p['slug'] . '.html';
+    if ($p['photo']) {
+        $photoHtml = '<a href="' . $href . '"><img class="person-card__photo" src="assets/img/people/' . $p['photo'] . '" alt="' . e($p['name_ar']) . '" loading="lazy"></a>';
+    } else {
+        $initials = mb_substr($p['name_ar'], 0, 1, 'UTF-8');
+        $photoHtml = '<a href="' . $href . '"><span class="person-card__photo person-card__photo--placeholder" aria-hidden="true">' . $initials . '</span></a>';
+    }
     $cardsHtml .= <<<HTML
                 <article class="person-card">
-                    <a href="{$href}"><img class="person-card__photo" src="assets/img/people/{$p['photo']}" alt="{$p['name_ar']}" loading="lazy"></a>
+                    {$photoHtml}
                     <div class="person-card__body">
                         <h2 class="person-card__name"><a href="{$href}">{$p['name_ar']}</a></h2>
                         <p class="person-card__role">{$p['role_ar']}</p>
@@ -325,6 +365,13 @@ foreach ($people as $p) {
         $emailHtml = '<div class="profile-photo-card__footer"><a class="profile-photo-card__email" href="mailto:' . e($p['email']) . '">' . e($p['email']) . '</a></div>';
     }
 
+    if ($p['photo']) {
+        $profilePhotoHtml = '<img src="assets/img/people/' . $p['photo'] . '" alt="' . e($p['name_ar']) . '">';
+    } else {
+        $initials = mb_substr($p['name_ar'], 0, 1, 'UTF-8');
+        $profilePhotoHtml = '<span class="profile-photo-card__placeholder">' . $initials . '</span>';
+    }
+
     $header = render_header([
         ['label' => 'عن الوزارة', 'href' => 'ministry-departments.html'],
         ['label' => 'وكلاء الوزارة', 'href' => 'leadership.html'],
@@ -340,7 +387,7 @@ foreach ($people as $p) {
     <section class="detail">
         <div class="container profile-layout">
             <aside class="profile-photo-card">
-                <img src="assets/img/people/{$p['photo']}" alt="{$p['name_ar']}">
+                {$profilePhotoHtml}
                 {$emailHtml}
             </aside>
 
@@ -367,3 +414,84 @@ HTML;
     file_put_contents($root . '/' . $p['slug'] . '.html', $html);
     echo "Wrote {$p['slug']}.html\n";
 }
+
+/* ========================= Tabbed single-page version ========================= */
+
+$tabsHtml = '';
+$panelsHtml = '';
+foreach ($people as $i => $p) {
+    $activeClass = $i === 0 ? ' is-active' : '';
+    $tabsHtml .= '<button type="button" class="leadership-tab' . $activeClass . '" data-tab="' . $i . '">' . e($p['name_ar']) . '</button>';
+
+    if ($p['photo']) {
+        $panelPhoto = '<img class="leadership-panel__photo" src="assets/img/people/' . $p['photo'] . '" alt="' . e($p['name_ar']) . '">';
+    } else {
+        $initials = mb_substr($p['name_ar'], 0, 1, 'UTF-8');
+        $panelPhoto = '<span class="leadership-panel__photo leadership-panel__photo--placeholder">' . $initials . '</span>';
+    }
+
+    $panelBio = '';
+    foreach ($p['bio_ar'] as $para) {
+        $panelBio .= '<p>' . e($para) . '</p>';
+    }
+
+    $panelsHtml .= <<<HTML
+            <div class="leadership-panel{$activeClass}" data-panel="{$i}">
+                {$panelPhoto}
+                <div class="leadership-panel__body">
+                    <h2>{$p['role_ar']}</h2>
+                    <h3>{$p['name_ar']}</h3>
+                    {$panelBio}
+                </div>
+            </div>
+HTML;
+}
+
+$tabJs = <<<JS
+(function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.leadership-tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.leadership-panel'));
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var idx = tab.getAttribute('data-tab');
+            tabs.forEach(function(t){ t.classList.remove('is-active'); });
+            panels.forEach(function(p){ p.classList.remove('is-active'); });
+            tab.classList.add('is-active');
+            var target = document.querySelector('[data-panel="' + idx + '"]');
+            if (target) target.classList.add('is-active');
+        });
+    });
+})();
+JS;
+
+$header = render_header([['label' => 'عن الوزارة', 'href' => 'ministry-departments.html'], ['label' => 'وكلاء الوزارة']], true, 'en/leadership-tabbed.html');
+$footer = render_footer();
+$floatingMenu = render_floating_menu_button();
+
+$tabbedBody = <<<HTML
+{$header}
+{$floatingMenu}
+<main id="main">
+    <section class="hero" style="background-image: url('assets/img/hero-departments.png');">
+        <div class="container hero__inner">
+            <h1 class="hero__title">وكلاء الوزارة</h1>
+            <p class="hero__subtitle">القيادات الإدارية العليا في وزارة التجارة والصناعة.</p>
+        </div>
+    </section>
+
+    <section class="departments">
+        <div class="container">
+            <div class="leadership-tabs">
+                {$tabsHtml}
+            </div>
+            {$panelsHtml}
+        </div>
+    </section>
+</main>
+{$footer}
+HTML;
+
+$tabbedJs = $js . "\n" . $tabJs;
+$tabbedHtml = page_shell('وكلاء الوزارة – وزارة التجارة والصناعة', 'القيادات الإدارية العليا في وزارة التجارة والصناعة.', $tabbedBody, $css, $tabbedJs);
+file_put_contents($root . '/leadership-tabbed.html', $tabbedHtml);
+echo "Wrote leadership-tabbed.html\n";

@@ -657,6 +657,22 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     border-color: var(--rose-400);
 }
 
+.dept-card--office {
+    cursor: default;
+    justify-content: center;
+}
+
+.dept-card--office:hover,
+.dept-card--office:focus-within {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+}
+
+.dept-card--office .dept-card__title {
+    margin-bottom: 0;
+}
+
 .dept-card__icon {
     width: 44px;
     height: 44px;
@@ -1146,6 +1162,14 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     color: var(--maroon-800);
 }
 
+.detail-side__office-item {
+    display: block;
+    padding: 10px 4px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-500);
+}
+
 .detail-main {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1460,6 +1484,30 @@ html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
     background: var(--surface-soft);
 }
 
+.person-card__photo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+    object-fit: unset;
+}
+
+.profile-photo-card__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+    border-radius: var(--radius-md);
+}
+
 .person-card__body {
     padding: 20px 22px 22px;
 }
@@ -1606,6 +1654,114 @@ html[dir="ltr"] .person-card__link:hover svg {
     }
 }
 
+/* ---------------------------------- Tabbed leadership -------------------------------- */
+
+.leadership-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px;
+}
+
+.leadership-tab {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-700);
+    background: none;
+    border: 2px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.leadership-tab:hover {
+    background: var(--rose-50, #fdf2f4);
+    color: var(--maroon-800);
+}
+
+.leadership-tab.is-active {
+    background: var(--maroon-800);
+    color: #fff;
+    border-color: var(--maroon-800);
+}
+
+.leadership-panel {
+    display: none;
+}
+
+.leadership-panel.is-active {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.leadership-panel__photo {
+    width: 100%;
+    border-radius: var(--radius-md);
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--surface-soft);
+}
+
+.leadership-panel__photo--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+}
+
+.leadership-panel__body h2 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--rose-500);
+    margin: 0 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.leadership-panel__body h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    margin: 0 0 20px;
+}
+
+.leadership-panel__body p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--ink-700);
+    margin: 0 0 14px;
+}
+
+.leadership-panel__body p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .leadership-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .leadership-panel.is-active {
+        grid-template-columns: 1fr;
+    }
+
+    .leadership-panel__photo {
+        max-width: 200px;
+    }
+}
+
 /* ---------------------------------- LTR (English) ----------------------------------- */
 /* "Forward/next" chevrons are mirrored for RTL reading direction above; in LTR they
    should point the natural (unflipped) way instead. "Back/previous" icons already use
@@ -1696,45 +1852,59 @@ html[dir="ltr"] .directory__row:hover .directory__row-arrow {
                                 <details class="detail-side__group">
                     <summary>
                         <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5a4 4 0 0 0 8 0l-3-5H5Zm14 0l-3 5a4 4 0 0 0 8 0l-3-5h-2ZM5 8h4M15 8h4M8 21h8"/></svg></span>
-                        <span class="cat-label">مكتب الوزير ووكيل الوزارة</span>
+                        <span class="cat-label">وزير التجارة والصناعة</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                     </summary>
-                    <ul><li class=""><a href="dept-1.html">إدارة التعاون الدولي والاتفاقيات التجارية</a></li><li class=""><a href="dept-2.html">إدارة التدقيق الداخلي</a></li><li class=""><a href="dept-3.html">المكتب الفني</a></li><li class=""><a href="dept-5.html">إدارة التخطيط والجودة والابتكار</a></li><li class=""><a href="dept-6.html">إدارة الشؤون القانونية</a></li></ul>
+                    <ul><li class=""><a href="dept-22.html">مكتب الوزير</a></li><li class=""><a href="dept-3.html">المكتب الفني</a></li><li class=""><a href="dept-2.html">إدارة التدقيق الداخلي</a></li><li class=""><a href="dept-1.html">إدارة التعاون الدولي والاتفاقيات التجارية</a></li><li class=""><a href="dept-6.html">إدارة الشؤون القانونية</a></li></ul>
+                </details>                <details class="detail-side__group">
+                    <summary>
+                        <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+                        <span class="cat-label">وزير الدولة لشؤون التجارة الخارجية</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+                    </summary>
+                    <ul><li class=""><a href="dept-23.html">مكتب وزير الدولة</a></li></ul>
+                </details>                <details class="detail-side__group">
+                    <summary>
+                        <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
+                        <span class="cat-label">وكيل الوزارة</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+                    </summary>
+                    <ul><li class=""><a href="dept-24.html">مكتب الوكيل</a></li><li class=""><a href="dept-5.html">إدارة التخطيط والجودة والابتكار</a></li></ul>
                 </details>                <details class="detail-side__group" open>
                     <summary>
                         <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></span>
-                        <span class="cat-label">التجارة وشؤون الشركات</span>
+                        <span class="cat-label">وكيل الوزارة المساعد لشؤون التجارة</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                     </summary>
-                    <ul><li class=""><a href="dept-4.html">إدارة التسجيل والتراخيص التجارية</a></li><li class=""><a href="dept-7.html">إدارة النافذة الواحدة</a></li><li class="is-active"><a href="dept-8.html">إدارة حماية حقوق الملكية الفكرية</a></li><li class=""><a href="dept-9.html">إدارة شؤون الشركات</a></li></ul>
+                    <ul><li class=""><a href="dept-25.html">مكتب الوكيل المساعد لشؤون التجارة</a></li><li class=""><a href="dept-4.html">إدارة التسجيل والتراخيص التجارية</a></li><li class=""><a href="dept-9.html">إدارة شؤون الشركات</a></li><li class="is-active"><a href="dept-8.html">إدارة حماية حقوق الملكية الفكرية</a></li><li class=""><a href="dept-7.html">إدارة النافذة الواحدة</a></li></ul>
                 </details>                <details class="detail-side__group">
                     <summary>
                         <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
-                        <span class="cat-label">الصناعة وتنمية الأعمال والاستثمار</span>
+                        <span class="cat-label">وكيل الوزارة المساعد لشؤون الصناعة وتنمية الأعمال</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                     </summary>
-                    <ul><li class=""><a href="dept-10.html">إدارة تنمية الأعمال</a></li><li class=""><a href="dept-11.html">إدارة دعم تنافسية المنتج الوطني</a></li><li class=""><a href="dept-12.html">إدارة التنمية الصناعية</a></li><li class=""><a href="dept-15.html">إدارة تنمية التبادل التجاري وترويج الاستثمار</a></li></ul>
+                    <ul><li class=""><a href="dept-26.html">مكتب الوكيل المساعد لشؤون الصناعة وتنمية الأعمال</a></li><li class=""><a href="dept-12.html">إدارة التنمية الصناعية</a></li><li class=""><a href="dept-11.html">إدارة دعم تنافسية المنتج الوطني</a></li><li class=""><a href="dept-10.html">إدارة تنمية الأعمال</a></li><li class=""><a href="dept-15.html">إدارة تنمية التبادل التجاري وترويج الاستثمار</a></li></ul>
                 </details>                <details class="detail-side__group">
                     <summary>
                         <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg></span>
-                        <span class="cat-label">حماية المستهلك ومراقبة الأسواق</span>
+                        <span class="cat-label">وكيل الوزارة المساعد لشؤون المستهلك</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                     </summary>
-                    <ul><li class=""><a href="dept-13.html">إدارة حماية المستهلك ومكافحة الغش التجاري</a></li><li class=""><a href="dept-14.html">إدارة التموين والمخزون الاستراتيجي</a></li><li class=""><a href="dept-17.html">إدارة حماية المنافسة</a></li><li class=""><a href="dept-18.html">إدارة التراخيص النوعية ومراقبة الأسواق</a></li></ul>
+                    <ul><li class=""><a href="dept-27.html">مكتب الوكيل المساعد لشؤون المستهلك</a></li><li class=""><a href="dept-13.html">إدارة حماية المستهلك ومكافحة الغش التجاري</a></li><li class=""><a href="dept-14.html">إدارة التموين والمخزون الاستراتيجي</a></li><li class=""><a href="dept-18.html">إدارة التراخيص النوعية ومراقبة الأسواق</a></li><li class=""><a href="dept-17.html">إدارة حماية المنافسة</a></li></ul>
                 </details>                <details class="detail-side__group">
                     <summary>
                         <span class="cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></span>
-                        <span class="cat-label">الخدمات المؤسسية والدعم</span>
+                        <span class="cat-label">وكيل الوزارة المساعد لشؤون الخدمات المشتركة</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
                     </summary>
-                    <ul><li class=""><a href="dept-16.html">إدارة العلاقات العامة والاتصال</a></li><li class=""><a href="dept-19.html">إدارة نظم المعلومات</a></li><li class=""><a href="dept-20.html">إدارة الشؤون المالية والإدارية</a></li><li class=""><a href="dept-21.html">إدارة الموارد البشرية</a></li></ul>
+                    <ul><li class=""><a href="dept-28.html">مكتب الوكيل المساعد لشؤون الخدمات المشتركة</a></li><li class=""><a href="dept-16.html">إدارة العلاقات العامة والاتصال</a></li><li class=""><a href="dept-21.html">إدارة الموارد البشرية</a></li><li class=""><a href="dept-20.html">إدارة الشؤون المالية والإدارية</a></li><li class=""><a href="dept-19.html">إدارة نظم المعلومات</a></li></ul>
                 </details>
             </aside>
 
             <article class="detail-main">
                 <header class="detail-main__header">
                     <div>
-                        <span class="dept-card__category">التجارة وشؤون الشركات</span>
+                        <span class="dept-card__category">وكيل الوزارة المساعد لشؤون التجارة</span>
                         <h1 class="detail-main__title">إدارة حماية حقوق الملكية الفكرية</h1>
                         <p class="detail-main__meta">الاختصاصات والمسؤوليات المنوطة بهذه الإدارة</p>
                     </div>

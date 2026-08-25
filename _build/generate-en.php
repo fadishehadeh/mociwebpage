@@ -23,11 +23,13 @@ if (!$raw) {
 
 /** Same order->category mapping as the Arabic build — content is bilingual, structure isn't. */
 $categories = [
-    'office-legal' => ['label' => "Office of the Minister & Undersecretary", 'orders' => [1, 2, 3, 5, 6]],
-    'trade-corporate' => ['label' => 'Trade & Corporate Affairs', 'orders' => [4, 7, 8, 9]],
-    'industry-investment' => ['label' => 'Industry, Business & Investment', 'orders' => [10, 11, 12, 15]],
-    'consumer-markets' => ['label' => 'Consumer Protection & Market Oversight', 'orders' => [13, 14, 17, 18]],
-    'corporate-support' => ['label' => 'Corporate & Support Services', 'orders' => [16, 19, 20, 21]],
+    'minister' => ['label' => 'Minister of Commerce and Industry', 'orders' => [22, 3, 2, 1, 6]],
+    'state-minister' => ['label' => 'State Minister for Foreign Trade Affairs', 'orders' => [23]],
+    'undersecretary' => ['label' => 'Undersecretary', 'orders' => [24, 5]],
+    'trade-corporate' => ['label' => 'Assistant Undersecretary for Trade Affairs', 'orders' => [25, 4, 9, 8, 7]],
+    'industry-investment' => ['label' => 'Assistant Undersecretary for Industry and Business Development', 'orders' => [26, 12, 11, 10, 15]],
+    'consumer-markets' => ['label' => 'Assistant Undersecretary for Consumer Affairs', 'orders' => [27, 13, 14, 18, 17]],
+    'corporate-support' => ['label' => 'Assistant Undersecretary for Shared Services', 'orders' => [28, 16, 21, 20, 19]],
 ];
 
 $orderToCategory = [];
@@ -38,7 +40,9 @@ foreach ($categories as $key => $cat) {
 }
 
 $categoryIcons = [
-    'office-legal' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5a4 4 0 0 0 8 0l-3-5H5Zm14 0l-3 5a4 4 0 0 0 8 0l-3-5h-2ZM5 8h4M15 8h4M8 21h8"/></svg>',
+    'minister' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5a4 4 0 0 0 8 0l-3-5H5Zm14 0l-3 5a4 4 0 0 0 8 0l-3-5h-2ZM5 8h4M15 8h4M8 21h8"/></svg>',
+    'state-minister' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>',
+    'undersecretary' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01"/></svg>',
     'trade-corporate' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>',
     'industry-investment' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>',
     'consumer-markets' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg>',
@@ -55,7 +59,13 @@ foreach ($raw as $row) {
         'category' => $orderToCategory[$row['order']],
     ];
 }
-usort($departments, fn($a, $b) => $a['order'] <=> $b['order']);
+$categoryKeys = array_keys($categories);
+usort($departments, function ($a, $b) use ($categoryKeys, $categories) {
+    $catCmp = array_search($a['category'], $categoryKeys, true) <=> array_search($b['category'], $categoryKeys, true);
+    if ($catCmp !== 0) return $catCmp;
+    $catOrders = $categories[$a['category']]['orders'];
+    return array_search($a['order'], $catOrders, true) <=> array_search($b['order'], $catOrders, true);
+});
 
 $css = file_get_contents($root . '/assets/css/style.css');
 $js = file_get_contents($root . '/assets/js/main.js');
@@ -268,6 +278,7 @@ HTML;
 
 $cardsHtml = '';
 foreach ($departments as $dept) {
+
     $totalTasks = count($dept['tasks']);
     $href = $dept['slug'] . '.html';
     $categoryLabel = $categories[$dept['category']]['label'];
@@ -377,8 +388,8 @@ foreach ($departments as $index => $dept) {
     $sideHtml = '';
     foreach ($categories as $catKey => $cat) {
         $itemsHtml = '';
-        foreach ($departments as $d) {
-            if ($d['category'] !== $catKey) continue;
+        foreach ($cat['orders'] as $order) {
+            $d = $byOrder[$order];
             $activeClass = $d['slug'] === $dept['slug'] ? 'is-active' : '';
             $itemsHtml .= '<li class="' . $activeClass . '"><a href="' . $d['slug'] . '.html">' . e($d['title']) . '</a></li>';
         }

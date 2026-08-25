@@ -179,13 +179,33 @@ $body = <<<HTML
         <div class="quicklinks">
             <h2 class="quicklinks__title">More Links</h2>
             <div class="quicklinks-grid">
+                <a class="quicklink-card" href="orgchart.html">
+                    <span class="quicklink-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8.5" y="14" width="7" height="7" rx="1"/><path d="M6.5 10v2.5h5V14M17.5 10v2.5h-5V14"/></svg>
+                    </span>
+                    <span class="quicklink-card__body">
+                        <h3>Organizational Structure</h3>
+                        <p>Ministry organizational chart per Amiri Decision No. (39) of 2022</p>
+                    </span>
+                    <svg class="quicklink-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
                 <a class="quicklink-card" href="leadership.html">
                     <span class="quicklink-card__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v1"/><circle cx="17" cy="8.5" r="2.5"/><path d="M21 21v-1a5 5 0 0 0-3-4.6"/></svg>
                     </span>
                     <span class="quicklink-card__body">
-                        <h3>Ministry Undersecretaries</h3>
-                        <p>Senior leadership of the Ministry and a brief profile of each</p>
+                        <h3>Ministry Undersecretaries — Cards</h3>
+                        <p>Senior leadership of the Ministry and a brief profile of each (card view)</p>
+                    </span>
+                    <svg class="quicklink-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a class="quicklink-card" href="leadership-tabbed.html">
+                    <span class="quicklink-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v6M15 3v6"/></svg>
+                    </span>
+                    <span class="quicklink-card__body">
+                        <h3>Ministry Undersecretaries — Tabbed</h3>
+                        <p>Senior leadership of the Ministry and a brief profile of each (tabbed view)</p>
                     </span>
                     <svg class="quicklink-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
