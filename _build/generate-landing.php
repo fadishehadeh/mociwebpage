@@ -197,6 +197,22 @@ $body = <<<HTML
                 </a>
             </article>
         </div>
+
+        <div class="quicklinks">
+            <h2 class="quicklinks__title">روابط إضافية</h2>
+            <div class="quicklinks-grid">
+                <a class="quicklink-card" href="leadership.html">
+                    <span class="quicklink-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v1"/><circle cx="17" cy="8.5" r="2.5"/><path d="M21 21v-1a5 5 0 0 0-3-4.6"/></svg>
+                    </span>
+                    <span class="quicklink-card__body">
+                        <h3>وكلاء الوزارة</h3>
+                        <p>القيادات الإدارية العليا في الوزارة ونبذة عن كل منهم</p>
+                    </span>
+                    <svg class="quicklink-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
+        </div>
     </div>
 </main>
 {$footer}

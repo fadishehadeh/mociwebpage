@@ -725,6 +725,99 @@ ul {
     }
 }
 
+.quicklinks {
+    padding-block: 8px 64px;
+}
+
+.quicklinks__title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    margin: 0 0 20px;
+}
+
+.quicklinks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.quicklink-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.quicklink-card:hover,
+.quicklink-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--rose-400);
+}
+
+.quicklink-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--rose-100);
+    color: var(--maroon-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.quicklink-card__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.quicklink-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.quicklink-card__body h3 {
+    margin: 0 0 4px;
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--ink-900);
+}
+
+.quicklink-card__body p {
+    margin: 0;
+    font-size: 0.84rem;
+    color: var(--ink-500);
+}
+
+.quicklink-card__arrow {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--ink-300);
+    transform: scaleX(-1);
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.quicklink-card:hover .quicklink-card__arrow {
+    color: var(--maroon-800);
+    transform: scaleX(-1) translateX(-3px);
+}
+
+html[dir="ltr"] .quicklink-card__arrow {
+    transform: none;
+}
+
+html[dir="ltr"] .quicklink-card:hover .quicklink-card__arrow {
+    transform: translateX(3px);
+}
+
 /* --------------------------------- Departments grid -------------------------------- */
 
 .departments {
@@ -1810,6 +1903,22 @@ html[dir="ltr"] .directory__row:hover .directory__row-arrow {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
                 </a>
             </article>
+        </div>
+
+        <div class="quicklinks">
+            <h2 class="quicklinks__title">More Links</h2>
+            <div class="quicklinks-grid">
+                <a class="quicklink-card" href="leadership.html">
+                    <span class="quicklink-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v1"/><circle cx="17" cy="8.5" r="2.5"/><path d="M21 21v-1a5 5 0 0 0-3-4.6"/></svg>
+                    </span>
+                    <span class="quicklink-card__body">
+                        <h3>Ministry Undersecretaries</h3>
+                        <p>Senior leadership of the Ministry and a brief profile of each</p>
+                    </span>
+                    <svg class="quicklink-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
         </div>
     </div>
 </main>
