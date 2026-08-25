@@ -128,8 +128,8 @@ function render_footer(): string
         <div>
             <h3>عن الوزارة</h3>
             <ul>
-                <li><a href="ministry-departments.html">إدارات الوزارة (الخيار 1)</a></li>
-                <li><a href="ministry-departments-directory.html">إدارات الوزارة (الخيار 2)</a></li>
+                <li><a href="ministry-departments.html">إدارات الوزارة</a></li>
+                <li><a href="leadership.html">وكلاء الوزارة</a></li>
                 <li><a href="#">اتصل بنا</a></li>
             </ul>
         </div>
@@ -159,40 +159,21 @@ $body = <<<HTML
 <main id="main">
     <section class="hero" style="background-image: url('assets/img/hero-departments.png');">
         <div class="container hero__inner">
-            <h1 class="hero__title">إعادة تصميم صفحة إدارات الوزارة</h1>
-            <p class="hero__subtitle">مفهومان مختلفان لإعادة تصميم صفحة إدارات وزارة التجارة والصناعة، بنفس الهوية البصرية ونفس المحتوى — اختر أحدهما لاستعراضه.</p>
+            <h1 class="hero__title">إدارات الوزارة</h1>
+            <p class="hero__subtitle">تصميم مُعاد لصفحة إدارات وزارة التجارة والصناعة، بنفس الهوية البصرية ونفس المحتوى.</p>
         </div>
     </section>
 
     <div class="container">
-        <div class="options-intro">
-            <h1>اختر أحد التصميمين</h1>
-            <p>كلا الخيارين يعرضان نفس إدارات الوزارة الـ 21 بنفس الألوان والخطوط، لكن بأسلوب تصفح مختلف. جرّب كليهما وأخبرنا بالأنسب.</p>
-        </div>
-
-        <div class="options-grid">
+        <div class="options-grid options-grid--single">
             <article class="option-card">
                 <div class="option-preview option-preview--cards">
                     <span></span><span></span><span></span><span></span>
                 </div>
-                <span class="option-card__badge">الخيار الأول</span>
-                <h2 class="option-card__title">عرض البطاقات</h2>
-                <p class="option-card__desc">شبكة من البطاقات المصغّرة لكل إدارة، مع تصنيفات وبحث سريع. مناسب لتصفح بصري سريع يشبه واجهات المتاجر.</p>
+                <h2 class="option-card__title">إدارات الوزارة</h2>
+                <p class="option-card__desc">شبكة من البطاقات المصغّرة لكل إدارة، مع تصنيفات وبحث سريع للوصول مباشرة إلى اختصاصات كل إدارة.</p>
                 <a class="btn btn-primary" href="ministry-departments.html">
-                    استعراض الخيار الأول
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
-                </a>
-            </article>
-
-            <article class="option-card">
-                <div class="option-preview option-preview--list">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <span class="option-card__badge">الخيار الثاني</span>
-                <h2 class="option-card__title">الدليل التنظيمي</h2>
-                <p class="option-card__desc">دليل مُقسّم إلى أقسام بحسب طبيعة العمل، بصفوف مضغوطة تتيح استعراض كل الإدارات الـ 21 دون كثير من التمرير.</p>
-                <a class="btn btn-primary" href="ministry-departments-directory.html">
-                    استعراض الخيار الثاني
+                    استعراض إدارات الوزارة
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
                 </a>
             </article>
@@ -224,8 +205,8 @@ $html = <<<HTML
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مفهوم إعادة تصميم – وزارة التجارة والصناعة</title>
-<meta name="description" content="مفهوم إعادة تصميم صفحة إدارات وزارة التجارة والصناعة بخيارين مختلفين.">
+<title>وزارة التجارة والصناعة</title>
+<meta name="description" content="الصفحة الرئيسية لإعادة تصميم موقع وزارة التجارة والصناعة.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">

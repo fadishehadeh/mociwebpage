@@ -125,8 +125,8 @@ function render_footer(): string
         <div>
             <h3>About the Ministry</h3>
             <ul>
-                <li><a href="ministry-departments.html">Ministry Departments (Option 1)</a></li>
-                <li><a href="ministry-departments-directory.html">Ministry Departments (Option 2)</a></li>
+                <li><a href="ministry-departments.html">Ministry Departments</a></li>
+                <li><a href="leadership.html">Ministry Undersecretaries</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
@@ -156,40 +156,21 @@ $body = <<<HTML
 <main id="main">
     <section class="hero" style="background-image: url('../assets/img/hero-departments.png');">
         <div class="container hero__inner">
-            <h1 class="hero__title">Redesigning the Ministry Departments Page</h1>
-            <p class="hero__subtitle">Two different concepts for redesigning the Ministry of Commerce and Industry's departments page, sharing the same visual identity and content &mdash; choose one to explore.</p>
+            <h1 class="hero__title">Ministry Departments</h1>
+            <p class="hero__subtitle">A redesign of the Ministry of Commerce and Industry's departments page, with the same visual identity and content.</p>
         </div>
     </section>
 
     <div class="container">
-        <div class="options-intro">
-            <h1>Choose a design</h1>
-            <p>Both options present the same 21 ministry departments with the same colors and typography, but a different browsing style. Try both and let us know which works best.</p>
-        </div>
-
-        <div class="options-grid">
+        <div class="options-grid options-grid--single">
             <article class="option-card">
                 <div class="option-preview option-preview--cards">
                     <span></span><span></span><span></span><span></span>
                 </div>
-                <span class="option-card__badge">Option 1</span>
-                <h2 class="option-card__title">Card Grid</h2>
-                <p class="option-card__desc">A grid of compact cards for each department, with categories and quick search. Suited for fast visual browsing, like a storefront layout.</p>
+                <h2 class="option-card__title">Ministry Departments</h2>
+                <p class="option-card__desc">A grid of compact cards for each department, with categories and quick search to jump straight to any department's responsibilities.</p>
                 <a class="btn btn-primary" href="ministry-departments.html">
-                    Explore Option 1
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
-                </a>
-            </article>
-
-            <article class="option-card">
-                <div class="option-preview option-preview--list">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-                <span class="option-card__badge">Option 2</span>
-                <h2 class="option-card__title">Organizational Directory</h2>
-                <p class="option-card__desc">A directory grouped into sections by function, with compact rows that let you scan all 21 departments with minimal scrolling.</p>
-                <a class="btn btn-primary" href="ministry-departments-directory.html">
-                    Explore Option 2
+                    Explore Ministry Departments
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M13 6l6 6-6 6M5 12h14"/></svg>
                 </a>
             </article>
@@ -221,8 +202,8 @@ $html = <<<HTML
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redesign Concept &ndash; Ministry of Commerce and Industry</title>
-<meta name="description" content="A redesign concept for the Ministry of Commerce and Industry's departments page, with two design directions to explore.">
+<title>Ministry of Commerce and Industry</title>
+<meta name="description" content="Homepage for the redesigned Ministry of Commerce and Industry website.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
