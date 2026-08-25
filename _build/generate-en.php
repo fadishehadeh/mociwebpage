@@ -204,6 +204,7 @@ function render_footer(): string
                 <li><a href="#">Ministry Strategy</a></li>
                 <li><a href="#">Organizational Structure</a></li>
                 <li><a href="ministry-departments.html">Ministry Departments</a></li>
+                <li><a href="leadership.html">Ministry Undersecretaries</a></li>
                 <li><a href="#">National Committees</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>

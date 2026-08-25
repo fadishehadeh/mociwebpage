@@ -211,6 +211,7 @@ function render_footer(): string
                 <li><a href="#">استراتيجية الوزارة</a></li>
                 <li><a href="#">الهيكل التنظيمي</a></li>
                 <li><a href="ministry-departments.html">إدارات الوزارة</a></li>
+                <li><a href="leadership.html">وكلاء الوزارة</a></li>
                 <li><a href="#">اللجان الوطنية</a></li>
                 <li><a href="#">اتصل بنا</a></li>
             </ul>

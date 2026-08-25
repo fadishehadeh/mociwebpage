@@ -2,66 +2,12 @@
 /**
  * Local build tool — NOT part of the shipped site.
  *
- * English mirror of generate-directory.php: same header/hero/footer as
- * en/ministry-departments.html, only the content area differs (grouped
- * directory of compact rows instead of a card grid).
+ * English mirror of generate-leadership.php, output to /en/.
  *
- * Run with: php _build/generate-directory-en.php
+ * Run with: php _build/generate-leadership-en.php
  */
 
 $root = dirname(__DIR__);
-
-$rawJson = file_get_contents($root . '/data/departments_en.json');
-$raw = json_decode($rawJson, true);
-if (!$raw) {
-    fwrite(STDERR, "Could not read/parse departments_en.json\n");
-    exit(1);
-}
-
-$categories = [
-    'office-legal' => ['label' => "Minister's Office & Legal Affairs", 'orders' => [1, 2, 3, 6]],
-    'trade-corporate' => ['label' => 'Trade & Corporate Affairs', 'orders' => [4, 7, 8, 9]],
-    'industry-investment' => ['label' => 'Industry, Business & Investment', 'orders' => [10, 11, 12, 15]],
-    'consumer-markets' => ['label' => 'Consumer Protection & Market Oversight', 'orders' => [13, 14, 17, 18]],
-    'corporate-support' => ['label' => 'Corporate & Support Services', 'orders' => [5, 16, 19, 20, 21]],
-];
-
-$orderToCategory = [];
-foreach ($categories as $key => $cat) {
-    foreach ($cat['orders'] as $order) {
-        $orderToCategory[$order] = $key;
-    }
-}
-
-/* Same graduated maroon/rose progression as the Arabic directory. */
-$categoryColors = [
-    'office-legal' => 'var(--maroon-950)',
-    'trade-corporate' => 'var(--maroon-900)',
-    'industry-investment' => 'var(--maroon-700)',
-    'consumer-markets' => 'var(--maroon-600)',
-    'corporate-support' => 'var(--rose-500)',
-];
-
-$categoryIcons = [
-    'office-legal' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l-3 5a4 4 0 0 0 8 0l-3-5H5Zm14 0l-3 5a4 4 0 0 0 8 0l-3-5h-2ZM5 8h4M15 8h4M8 21h8"/></svg>',
-    'trade-corporate' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>',
-    'industry-investment' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>',
-    'consumer-markets' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4Z"/><path d="M9 12l2 2 4-4"/></svg>',
-    'corporate-support' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>',
-];
-
-$departments = [];
-foreach ($raw as $row) {
-    $departments[] = [
-        'order' => $row['order'],
-        'slug' => 'dept-' . $row['order'],
-        'title' => $row['english_title'],
-        'tasks' => $row['responsibilities'],
-        'category' => $orderToCategory[$row['order']],
-    ];
-}
-usort($departments, fn($a, $b) => $a['order'] <=> $b['order']);
-
 $css = file_get_contents($root . '/assets/css/style.css');
 $js = file_get_contents($root . '/assets/js/main.js');
 
@@ -70,7 +16,34 @@ function e(string $s): string
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
-function render_header(array $breadcrumbs, bool $active, string $arHref = '../ministry-departments-directory.html'): string
+$people = [
+    [
+        'slug' => 'hassan-al-ghanim',
+        'name_en' => 'Hassan bin Sultan Al-Ghanim',
+        'role_en' => 'Assistant Undersecretary for Consumer Affairs',
+        'email' => null,
+        'photo' => 'hassan-al-ghanim.jpg',
+        'bio_en' => [
+            'Mr. Hassan bin Sultan Al-Ghanim has served as Assistant Undersecretary for Consumer Affairs at the Ministry of Commerce and Industry since 2023. He has more than 20 years of experience in strategic economic initiatives, investment management, and institutional transformation. He oversees Qatar’s strategic food subsidy programme and strategic food reserves, while also supporting the modernisation of consumer protection systems.',
+            'Previously, he served as Secretary to the Deputy Prime Minister for Economic Affairs at the Ministry of Foreign Affairs, where he contributed to shaping national economic policies and strengthening Qatar’s global economic partnerships. He also held key positions at the Amiri Diwan and Barwa Real Estate Group, where he managed multi-billion-riyal investment portfolios and major construction projects.',
+        ],
+    ],
+    [
+        'slug' => 'saleh-al-khulaifi',
+        'name_en' => 'Saleh Majid Al-Khulaifi',
+        'role_en' => 'Deputy Undersecretary for Industrial Affairs and Business Development',
+        'email' => 'Salkhulaifi@moci.gov.qa',
+        'photo' => 'saleh-al-khulaifi.jpg',
+        'bio_en' => [
+            'Focusing on driving industrial development, entrepreneurship, and attracting foreign direct investment to help in shaping Qatar\'s economic landscape, he helped develop and implement the national manufacturing strategy.',
+            'Within the ministry, he led efforts to improve customer-facing services for businesses, ensuring procedures are efficient, accessible, and supportive of business growth — streamlining company set-up processes and creating a business-friendly environment to boost entrepreneurship.',
+            'Drawing on his extensive experience, he has held key positions in both the public and private sectors. Notably, he served as the Executive Director of Business Localization at Qatar Development Bank (QDB), where he managed the establishment of a QAR 500 million industrial cluster (Jahiz) as well as identifying opportunities for the private sector worth more than QAR 1.2 billion.',
+            'Educationally, Mr. Al-Khulaifi holds a Master of Science in Technology Entrepreneurship (MSc) from University College London (UCL). Additionally, he earned a Bachelor\'s Degree in Business Administration from Carnegie Mellon University.',
+        ],
+    ],
+];
+
+function render_header(array $breadcrumbs, bool $active, string $arHref): string
 {
     $activeClass = $active ? 'is-active' : '';
     $crumbsHtml = '';
@@ -129,9 +102,9 @@ function render_header(array $breadcrumbs, bool $active, string $arHref = '../mi
 
     <div class="breadcrumb-bar">
         <div class="container breadcrumb-bar__inner">
-            <a class="breadcrumb-back" href="ministry-departments.html">
+            <a class="breadcrumb-back" href="leadership.html">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                Back to About the Ministry
+                Back to Ministry Undersecretaries
             </a>
             <div class="breadcrumb-trail">
                 <a href="index.html">Home</a>
@@ -203,12 +176,8 @@ function render_footer(): string
         <div>
             <h3>About the Ministry</h3>
             <ul>
-                <li><a href="#">Vision, Mission &amp; Values</a></li>
-                <li><a href="#">Ministry Strategy</a></li>
-                <li><a href="#">Organizational Structure</a></li>
                 <li><a href="ministry-departments.html">Ministry Departments</a></li>
                 <li><a href="leadership.html">Ministry Undersecretaries</a></li>
-                <li><a href="#">National Committees</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
@@ -267,57 +236,27 @@ function page_shell(string $title, string $description, string $bodyHtml, string
 HTML;
 }
 
-/* ---------------------------- Directory content area ---------------------------- */
+/* ---------------------------- Index page ---------------------------- */
 
-$groupsHtml = '';
-$groupIndex = 0;
-foreach ($categories as $catKey => $cat) {
-    $groupIndex++;
-    $rowsHtml = '';
-    $groupCount = 0;
-    foreach ($departments as $dept) {
-        if ($dept['category'] !== $catKey) continue;
-        $groupCount++;
-        $totalTasks = count($dept['tasks']);
-        $href = $dept['slug'] . '.html';
-        $icon = $categoryIcons[$catKey];
-        $searchBlob = e(mb_strtolower($dept['title'] . ' ' . implode(' ', $dept['tasks']), 'UTF-8'));
-        $respWord = $totalTasks === 1 ? 'responsibility' : 'responsibilities';
-
-        $rowsHtml .= <<<HTML
-                    <a class="directory__row" href="{$href}" data-searchable data-category="{$catKey}" data-search="{$searchBlob}">
-                        <span class="dept-card__icon" aria-hidden="true">{$icon}</span>
-                        <span class="directory__row-title">{$dept['title']}</span>
-                        <span class="directory__row-count">{$totalTasks} {$respWord}</span>
-                        <svg class="directory__row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </a>
-HTML;
-    }
-
-    $icon = $categoryIcons[$catKey];
-    $groupStyle = "--cat-fg:{$categoryColors[$catKey]};";
-    $plainClass = $groupIndex % 2 === 0 ? ' directory__group--plain' : '';
-    $deptWord = $groupCount === 1 ? 'department' : 'departments';
-    $groupsHtml .= <<<HTML
-                <div class="directory__group{$plainClass}" data-group data-category="{$catKey}" style="{$groupStyle}">
-                    <div class="directory__group-header">
-                        <span class="directory__group-icon" aria-hidden="true">{$icon}</span>
-                        <h2>{$cat['label']}</h2>
-                        <span class="directory__group-count">{$groupCount} {$deptWord}</span>
+$cardsHtml = '';
+foreach ($people as $p) {
+    $href = $p['slug'] . '.html';
+    $cardsHtml .= <<<HTML
+                <article class="person-card">
+                    <a href="{$href}"><img class="person-card__photo" src="../assets/img/people/{$p['photo']}" alt="{$p['name_en']}" loading="lazy"></a>
+                    <div class="person-card__body">
+                        <h2 class="person-card__name"><a href="{$href}">{$p['name_en']}</a></h2>
+                        <p class="person-card__role">{$p['role_en']}</p>
+                        <a class="person-card__link" href="{$href}">
+                            View biography
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
                     </div>
-                    <div class="directory__rows">
-                        {$rowsHtml}
-                    </div>
-                </div>
+                </article>
 HTML;
 }
 
-$pillsHtml = '<button type="button" class="filter-pill is-active" data-category="all">All Departments</button>';
-foreach ($categories as $key => $cat) {
-    $pillsHtml .= '<button type="button" class="filter-pill" data-category="' . $key . '">' . e($cat['label']) . '</button>';
-}
-
-$header = render_header([['label' => 'About the Ministry', 'href' => '#'], ['label' => 'Departments']], true);
+$header = render_header([['label' => 'About the Ministry', 'href' => 'ministry-departments.html'], ['label' => 'Ministry Undersecretaries']], true, '../leadership.html');
 $footer = render_footer();
 $floatingMenu = render_floating_menu_button();
 
@@ -327,55 +266,78 @@ $body = <<<HTML
 <main id="main">
     <section class="hero" style="background-image: url('../assets/img/hero-departments.png');">
         <div class="container hero__inner">
-            <h1 class="hero__title">Ministry Departments</h1>
-            <p class="hero__subtitle">The departments of the Ministry of Commerce and Industry and their responsibilities.</p>
+            <h1 class="hero__title">Ministry Undersecretaries</h1>
+            <p class="hero__subtitle">Senior leadership of the Ministry of Commerce and Industry.</p>
         </div>
     </section>
-
-    <div class="filter-bar">
-        <div class="container filter-bar__inner">
-            <div class="filter-search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="search" id="deptSearch" placeholder="Search by department name or responsibility...">
-            </div>
-            <div class="filter-bar__row">
-                <div class="filter-pills">
-                    {$pillsHtml}
-                </div>
-                <span class="filter-count" data-template="{n} of {total} departments"></span>
-            </div>
-        </div>
-    </div>
 
     <section class="departments">
         <div class="container">
-            <div class="directory" data-dept-grid>
-{$groupsHtml}
+            <div class="leadership-grid">
+{$cardsHtml}
             </div>
-            <div class="no-results">
-                <strong>No matching results</strong>
-                <span>Try a different search term or choose another category.</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="newsletter">
-        <div class="container newsletter__inner">
-            <div>
-                <h2 class="newsletter__title">Join Us</h2>
-                <p class="newsletter__text">Stay connected with the Ministry of Commerce and Industry in Qatar. Join a growing community of investors, partners, and innovators shaping the future.</p>
-            </div>
-            <form class="newsletter__form">
-                <label class="visually-hidden" for="newsletterEmail">Your email address</label>
-                <input class="newsletter__input" type="email" id="newsletterEmail" placeholder="Your email address" required>
-                <button type="submit" class="btn btn-light">Subscribe</button>
-            </form>
         </div>
     </section>
 </main>
 {$footer}
 HTML;
 
-$html = page_shell('Ministry Departments Directory &ndash; Ministry of Commerce and Industry', 'A directory of the Ministry of Commerce and Industry\'s departments and their responsibilities.', $body, $css, $js);
-file_put_contents($root . '/en/ministry-departments-directory.html', $html);
-echo "Wrote en/ministry-departments-directory.html\n";
+$html = page_shell('Ministry Undersecretaries &ndash; Ministry of Commerce and Industry', 'Senior leadership of the Ministry of Commerce and Industry.', $body, $css, $js);
+file_put_contents($root . '/en/leadership.html', $html);
+echo "Wrote en/leadership.html\n";
+
+/* ---------------------------- Profile pages ---------------------------- */
+
+foreach ($people as $p) {
+    $bioHtml = '';
+    foreach ($p['bio_en'] as $para) {
+        $bioHtml .= '<p>' . e($para) . '</p>';
+    }
+
+    $emailHtml = '';
+    if ($p['email']) {
+        $emailHtml = '<div class="profile-photo-card__footer"><a class="profile-photo-card__email" href="mailto:' . e($p['email']) . '">' . e($p['email']) . '</a></div>';
+    }
+
+    $header = render_header([
+        ['label' => 'About the Ministry', 'href' => 'ministry-departments.html'],
+        ['label' => 'Ministry Undersecretaries', 'href' => 'leadership.html'],
+        ['label' => $p['name_en']],
+    ], true, '../' . $p['slug'] . '.html');
+    $footer = render_footer();
+    $floatingMenu = render_floating_menu_button();
+
+    $body = <<<HTML
+{$header}
+{$floatingMenu}
+<main id="main">
+    <section class="detail">
+        <div class="container profile-layout">
+            <aside class="profile-photo-card">
+                <img src="../assets/img/people/{$p['photo']}" alt="{$p['name_en']}">
+                {$emailHtml}
+            </aside>
+
+            <article class="profile-main">
+                <span class="profile-main__role">{$p['role_en']}</span>
+                <h1 class="profile-main__title">{$p['name_en']}</h1>
+                <div class="profile-bio">
+                    {$bioHtml}
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+{$footer}
+HTML;
+
+    $html = page_shell(
+        e($p['name_en']) . ' &ndash; Ministry of Commerce and Industry',
+        e($p['role_en']) . ' &ndash; ' . e($p['name_en']),
+        $body,
+        $css,
+        $js
+    );
+    file_put_contents($root . '/en/' . $p['slug'] . '.html', $html);
+    echo "Wrote en/{$p['slug']}.html\n";
+}

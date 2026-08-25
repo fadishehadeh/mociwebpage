@@ -4,3 +4,8 @@ Thumbs.db
 
 # Local dev server config (paths are machine-specific)
 .claude/
+
+# Raw source bio documents (CVs, originals) — not shipped; the site uses
+# the processed photos in assets/img/people/ and inline profile data.
+bios/
+bios.zip

@@ -1526,6 +1526,185 @@ ul {
     }
 }
 
+/* ------------------------------------ Leadership ------------------------------------ */
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.person-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.person-card:hover,
+.person-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--rose-400);
+}
+
+.person-card__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: var(--surface-soft);
+}
+
+.person-card__body {
+    padding: 20px 22px 22px;
+}
+
+.person-card__name {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    margin: 0 0 6px;
+}
+
+.person-card__name a:hover {
+    color: var(--maroon-800);
+}
+
+.person-card__role {
+    font-size: 0.84rem;
+    color: var(--maroon-800);
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 0 0 16px;
+}
+
+.person-card__link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--maroon-800);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+}
+
+.person-card__link svg {
+    width: 14px;
+    height: 14px;
+    transform: scaleX(-1);
+    transition: transform 0.15s ease;
+}
+
+.person-card__link:hover svg {
+    transform: scaleX(-1) translateX(-3px);
+}
+
+html[dir="ltr"] .person-card__link svg {
+    transform: none;
+}
+
+html[dir="ltr"] .person-card__link:hover svg {
+    transform: translateX(3px);
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.profile-photo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: calc(var(--header-h) + 16px);
+}
+
+.profile-photo-card img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+.profile-photo-card__footer {
+    padding: 16px 18px;
+    text-align: center;
+    border-top: 3px solid var(--maroon-800);
+}
+
+.profile-photo-card__email {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--maroon-800);
+    word-break: break-all;
+}
+
+.profile-main {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+}
+
+.profile-main__role {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--maroon-800);
+    background: var(--rose-100);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 14px;
+}
+
+.profile-main__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-bio p {
+    font-size: 0.98rem;
+    line-height: 1.9;
+    color: var(--ink-700);
+    margin: 0 0 18px;
+}
+
+.profile-bio p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-photo-card {
+        position: static;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 640px) {
+    .profile-main {
+        padding: 22px;
+    }
+}
+
 /* ---------------------------------- LTR (English) ----------------------------------- */
 /* "Forward/next" chevrons are mirrored for RTL reading direction above; in LTR they
    should point the natural (unflipped) way instead. "Back/previous" icons already use
