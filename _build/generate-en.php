@@ -25,10 +25,10 @@ if (!$raw) {
 $categories = [
     'minister' => ['label' => 'Departments under the Minister', 'orders' => [3, 2, 1, 6]],
     'undersecretary' => ['label' => 'Planning, Quality and Innovation', 'orders' => [5]],
-    'trade-corporate' => ['label' => 'Assistant Undersecretary for Trade Affairs', 'orders' => [4, 9, 8, 7]],
-    'industry-investment' => ['label' => 'Assistant Undersecretary for Industry and Business Development', 'orders' => [12, 11, 10, 15]],
-    'consumer-markets' => ['label' => 'Assistant Undersecretary for Consumer Affairs', 'orders' => [13, 14, 18, 17]],
-    'corporate-support' => ['label' => 'Assistant Undersecretary for Shared Services', 'orders' => [16, 21, 20, 19]],
+    'trade-corporate' => ['label' => 'Commercial Affairs Sector', 'orders' => [4, 9, 8, 7]],
+    'industry-investment' => ['label' => 'Industrial Affairs & Business Development Sector', 'orders' => [12, 11, 10, 15]],
+    'consumer-markets' => ['label' => 'Consumer Affairs Sector', 'orders' => [13, 14, 18, 17]],
+    'corporate-support' => ['label' => 'Shared Service Affairs Sector', 'orders' => [16, 21, 20, 19]],
 ];
 
 $orderToCategory = [];

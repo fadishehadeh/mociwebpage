@@ -29,10 +29,10 @@ if (!$raw) {
 $categories = [
     'minister' => ['label' => 'الوحدات الإدارية التابعة للوزير', 'orders' => [3, 2, 1, 6]],
     'undersecretary' => ['label' => 'التخطيط والجودة والابتكار', 'orders' => [5]],
-    'trade-corporate' => ['label' => 'وكيل الوزارة المساعد لشؤون التجارة', 'orders' => [4, 9, 8, 7]],
-    'industry-investment' => ['label' => 'وكيل الوزارة المساعد لشؤون الصناعة وتنمية الأعمال', 'orders' => [12, 11, 10, 15]],
-    'consumer-markets' => ['label' => 'وكيل الوزارة المساعد لشؤون المستهلك', 'orders' => [13, 14, 18, 17]],
-    'corporate-support' => ['label' => 'وكيل الوزارة المساعد لشؤون الخدمات المشتركة', 'orders' => [16, 21, 20, 19]],
+    'trade-corporate' => ['label' => 'قطاع شؤون التجارة', 'orders' => [4, 9, 8, 7]],
+    'industry-investment' => ['label' => 'قطاع شؤون الصناعة وتنمية الاعمال', 'orders' => [12, 11, 10, 15]],
+    'consumer-markets' => ['label' => 'قطاع شؤون المستهلك', 'orders' => [13, 14, 18, 17]],
+    'corporate-support' => ['label' => 'قطاع شؤون الخدمات المشتركة', 'orders' => [16, 21, 20, 19]],
 ];
 
 $orderToCategory = [];
