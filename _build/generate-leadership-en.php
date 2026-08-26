@@ -54,11 +54,11 @@ $people = [
         ],
     ],
     [
-        'slug' => 'undersecretary-4',
-        'name_en' => 'To Be Announced',
+        'slug' => 'ali',
+        'name_en' => 'Ali Khalid Al-Khalifi',
         'role_en' => 'Assistant Undersecretary for Shared Services',
         'email' => null,
-        'photo' => null,
+        'photo' => 'ali.jpg',
         'bio_en' => [
             'Biography coming soon.',
         ],

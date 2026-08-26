@@ -87,13 +87,13 @@ $people = [
         ],
     ],
     [
-        'slug' => 'undersecretary-4',
-        'name_ar' => 'سيتم الإعلان قريباً',
-        'name_en' => 'To Be Announced',
+        'slug' => 'ali',
+        'name_ar' => 'علي خالد الخليفي',
+        'name_en' => 'Ali Khalid Al-Khalifi',
         'role_ar' => 'وكيل الوزارة المساعد لشؤون الخدمات المشتركة',
         'role_en' => 'Assistant Undersecretary for Shared Services',
         'email' => null,
-        'photo' => null,
+        'photo' => 'ali.jpg',
         'bio_ar' => [
             'سيتم نشر السيرة الذاتية قريباً.',
         ],

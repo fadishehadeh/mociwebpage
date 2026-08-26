@@ -27,13 +27,12 @@ if (!$raw) {
  * are grouped by what the department actually does instead).
  */
 $categories = [
-    'minister' => ['label' => 'وزير التجارة والصناعة', 'orders' => [22, 3, 2, 1, 6]],
-    'state-minister' => ['label' => 'وزير الدولة لشؤون التجارة الخارجية', 'orders' => [23]],
-    'undersecretary' => ['label' => 'وكيل الوزارة', 'orders' => [24, 5]],
-    'trade-corporate' => ['label' => 'وكيل الوزارة المساعد لشؤون التجارة', 'orders' => [25, 4, 9, 8, 7]],
-    'industry-investment' => ['label' => 'وكيل الوزارة المساعد لشؤون الصناعة وتنمية الأعمال', 'orders' => [26, 12, 11, 10, 15]],
-    'consumer-markets' => ['label' => 'وكيل الوزارة المساعد لشؤون المستهلك', 'orders' => [27, 13, 14, 18, 17]],
-    'corporate-support' => ['label' => 'وكيل الوزارة المساعد لشؤون الخدمات المشتركة', 'orders' => [28, 16, 21, 20, 19]],
+    'minister' => ['label' => 'الوحدات الإدارية التابعة للوزير', 'orders' => [3, 2, 1, 6]],
+    'undersecretary' => ['label' => 'التخطيط والجودة والابتكار', 'orders' => [5]],
+    'trade-corporate' => ['label' => 'وكيل الوزارة المساعد لشؤون التجارة', 'orders' => [4, 9, 8, 7]],
+    'industry-investment' => ['label' => 'وكيل الوزارة المساعد لشؤون الصناعة وتنمية الأعمال', 'orders' => [12, 11, 10, 15]],
+    'consumer-markets' => ['label' => 'وكيل الوزارة المساعد لشؤون المستهلك', 'orders' => [13, 14, 18, 17]],
+    'corporate-support' => ['label' => 'وكيل الوزارة المساعد لشؤون الخدمات المشتركة', 'orders' => [16, 21, 20, 19]],
 ];
 
 $orderToCategory = [];

@@ -23,13 +23,12 @@ if (!$raw) {
 
 /** Same order->category mapping as the Arabic build — content is bilingual, structure isn't. */
 $categories = [
-    'minister' => ['label' => 'Minister of Commerce and Industry', 'orders' => [22, 3, 2, 1, 6]],
-    'state-minister' => ['label' => 'State Minister for Foreign Trade Affairs', 'orders' => [23]],
-    'undersecretary' => ['label' => 'Undersecretary', 'orders' => [24, 5]],
-    'trade-corporate' => ['label' => 'Assistant Undersecretary for Trade Affairs', 'orders' => [25, 4, 9, 8, 7]],
-    'industry-investment' => ['label' => 'Assistant Undersecretary for Industry and Business Development', 'orders' => [26, 12, 11, 10, 15]],
-    'consumer-markets' => ['label' => 'Assistant Undersecretary for Consumer Affairs', 'orders' => [27, 13, 14, 18, 17]],
-    'corporate-support' => ['label' => 'Assistant Undersecretary for Shared Services', 'orders' => [28, 16, 21, 20, 19]],
+    'minister' => ['label' => 'Departments under the Minister', 'orders' => [3, 2, 1, 6]],
+    'undersecretary' => ['label' => 'Planning, Quality and Innovation', 'orders' => [5]],
+    'trade-corporate' => ['label' => 'Assistant Undersecretary for Trade Affairs', 'orders' => [4, 9, 8, 7]],
+    'industry-investment' => ['label' => 'Assistant Undersecretary for Industry and Business Development', 'orders' => [12, 11, 10, 15]],
+    'consumer-markets' => ['label' => 'Assistant Undersecretary for Consumer Affairs', 'orders' => [13, 14, 18, 17]],
+    'corporate-support' => ['label' => 'Assistant Undersecretary for Shared Services', 'orders' => [16, 21, 20, 19]],
 ];
 
 $orderToCategory = [];
