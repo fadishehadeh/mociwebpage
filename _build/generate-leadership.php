@@ -38,12 +38,14 @@ $people = [
         'email' => null,
         'photo' => 'hassan-al-ghanim.jpg',
         'bio_ar' => [
-            'شغل السيد حسن سلطان حسن الغانم منصب وكيل وزارة التجارة والصناعة لشؤون المستهلك منذ عام 2023، ويتمتع بخبرة تزيد عن عشرين عاماً في المبادرات الاقتصادية الاستراتيجية، وإدارة الاستثمارات، والتحول المؤسسي. يشرف على برنامج الدعم الغذائي الاستراتيجي لقطر ومخزون الغذاء الاستراتيجي، مع تحديث أنظمة حماية المستهلك.',
-            'شغل سابقاً منصب سكرتير نائب رئيس مجلس الوزراء للشؤون الاقتصادية بوزارة الخارجية، حيث ساهم في صياغة السياسات الاقتصادية الوطنية وتعزيز الشراكات الاقتصادية العالمية لقطر. كما تولى مناصب مهمة في الديوان الأميري ومجموعة بروة العقارية، حيث أدار محافظ استثمارية بمليارات الريالات ومشاريع إنشائية كبرى.',
+            'شغل السيد حسن الغانم منصب وكيل وزارة التجارة والصناعة لشؤون المستهلك منذ عام 2023، ويتمتع بخبرة تزيد عن عشرين عاماً في المبادرات الاقتصادية الاستراتيجية، وإدارة الاستثمارات، والتحول المؤسسي. يشرف على برنامج الدعم الغذائي الاستراتيجي لقطر ومخزون الغذاء الاستراتيجي، مع تحديث أنظمة حماية المستهلك.',
+            'شغل سابقاً منصب سكرتير نائب رئيس مجلس الوزراء للشؤون الاقتصادية بوزارة الخارجية، حيث ساهم في صياغة السياسات الاقتصادية الوطنية وتعزيز الشراكات الاقتصادية العالمية لقطر. كما تولى مناصب مهمة في الديوان الأميري ومجموعة بروة العقارية، حيث أدار محافظ استثمارية بمليارات الريالات ومشاريع انشائية كبرى.',
+            'يحمل درجة الماجستير في إدارة الأعمال من جامعة ليدز، بالإضافة إلى شهادات تنفيذية من معهد ماساتشوستس للتكنولوجيا MIT، وهارفارد، وجامعة جورجتاون. هو نائب رئيس مجلس إدارة شركة حصاد الغذائية، ونائب رئيس مجلس إدارة الميرة، وعضو مجلس إدارة ودام للأغذية.',
         ],
         'bio_en' => [
-            'Mr. Hassan bin Sultan Al-Ghanim has served as Assistant Undersecretary for Consumer Affairs at the Ministry of Commerce and Industry since 2023. He has more than 20 years of experience in strategic economic initiatives, investment management, and institutional transformation. He oversees Qatar’s strategic food subsidy programme and strategic food reserves, while also supporting the modernisation of consumer protection systems.',
-            'Previously, he served as Secretary to the Deputy Prime Minister for Economic Affairs at the Ministry of Foreign Affairs, where he contributed to shaping national economic policies and strengthening Qatar’s global economic partnerships. He also held key positions at the Amiri Diwan and Barwa Real Estate Group, where he managed multi-billion-riyal investment portfolios and major construction projects.',
+            'Mr. Hassan Al-Ghanim has served as Assistant Undersecretary for Consumer Affairs at the Ministry of Commerce and Industry since 2023. He brings over twenty years of experience in strategic economic initiatives, investment management, and institutional transformation. He oversees Qatar\'s strategic food subsidy programme and strategic food reserves, while modernising consumer protection systems.',
+            'Previously, he served as Secretary to the Deputy Prime Minister for Economic Affairs at the Ministry of Foreign Affairs, where he contributed to shaping national economic policies and strengthening Qatar\'s global economic partnerships. He also held key positions at the Amiri Diwan and Barwa Real Estate Group, where he managed multi-billion-riyal investment portfolios and major construction projects.',
+            'He holds an MBA from the University of Leeds, in addition to executive certificates from MIT, Harvard, and Georgetown University. He serves as Vice Chairman of the Board of Hassad Food Company, Vice Chairman of the Board of Al Meera, and Board Member of Widam Food Company.',
         ],
     ],
     [

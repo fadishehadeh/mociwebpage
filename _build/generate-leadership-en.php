@@ -24,8 +24,9 @@ $people = [
         'email' => null,
         'photo' => 'hassan-al-ghanim.jpg',
         'bio_en' => [
-            'Mr. Hassan bin Sultan Al-Ghanim has served as Assistant Undersecretary for Consumer Affairs at the Ministry of Commerce and Industry since 2023. He has more than 20 years of experience in strategic economic initiatives, investment management, and institutional transformation. He oversees Qatar’s strategic food subsidy programme and strategic food reserves, while also supporting the modernisation of consumer protection systems.',
-            'Previously, he served as Secretary to the Deputy Prime Minister for Economic Affairs at the Ministry of Foreign Affairs, where he contributed to shaping national economic policies and strengthening Qatar’s global economic partnerships. He also held key positions at the Amiri Diwan and Barwa Real Estate Group, where he managed multi-billion-riyal investment portfolios and major construction projects.',
+            'Mr. Hassan Al-Ghanim has served as Assistant Undersecretary for Consumer Affairs at the Ministry of Commerce and Industry since 2023. He brings over twenty years of experience in strategic economic initiatives, investment management, and institutional transformation. He oversees Qatar\'s strategic food subsidy programme and strategic food reserves, while modernising consumer protection systems.',
+            'Previously, he served as Secretary to the Deputy Prime Minister for Economic Affairs at the Ministry of Foreign Affairs, where he contributed to shaping national economic policies and strengthening Qatar\'s global economic partnerships. He also held key positions at the Amiri Diwan and Barwa Real Estate Group, where he managed multi-billion-riyal investment portfolios and major construction projects.',
+            'He holds an MBA from the University of Leeds, in addition to executive certificates from MIT, Harvard, and Georgetown University. He serves as Vice Chairman of the Board of Hassad Food Company, Vice Chairman of the Board of Al Meera, and Board Member of Widam Food Company.',
         ],
     ],
     [
