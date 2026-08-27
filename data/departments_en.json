@@ -1,7 +1,7 @@
 [
   {
     "order": 1,
-    "english_title": "International Cooperation and Trade Department",
+    "english_title": "International Cooperation and Trade Agreements Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-minister/international-cooperation-and-trade-department/",
     "responsibilities": [
       "Preparing working papers related to the ministry's activities for dissemination across local, regional and international conferences, seminars and meetings in coordination with the concerned administrative units and competent authorities.",
@@ -47,7 +47,7 @@
   },
   {
     "order": 4,
-    "english_title": "The Commercial Registration and Licenses Department",
+    "english_title": "Commercial Registration and Licenses Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-assistant-deputy-of-commerce-affairs/the-commercial-registration-and-licenses-department/",
     "responsibilities": [
       "Implementing policies related to commercial registrations, trade agents and commercial entities in Qatar.",
@@ -190,7 +190,7 @@
   },
   {
     "order": 13,
-    "english_title": "The Consumer Protection and Combating Commercial Fraud",
+    "english_title": "Consumer Protection and Combating Commercial Fraud Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-assistant-deputy-of-consumer-affairs/the-consumer-protection-and-combating-commercial-fraud/",
     "responsibilities": [
       "Implementing legislation to combat commercial fraud and protect the rights of consumers",
@@ -207,7 +207,7 @@
   },
   {
     "order": 14,
-    "english_title": "Department of Supply and Strategic Inventory",
+    "english_title": "Supply and Strategic Inventory Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-assistant-deputy-of-consumer-affairs/supplies-department/",
     "note": "English page lists 8 items vs 21 in the Arabic source; English content appears significantly condensed/edited relative to the Arabic page, no fabricated items added.",
     "responsibilities": [
@@ -264,7 +264,7 @@
   },
   {
     "order": 17,
-    "english_title": "The Competition Protection Department",
+    "english_title": "Competition Protection Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-assistant-deputy-of-consumer-affairs/the-competition-protection-department/",
     "responsibilities": [
       "Implementing policies promoting competition and preventing monopolistic practices.",
@@ -277,7 +277,7 @@
   },
   {
     "order": 18,
-    "english_title": "Quality License and Market Control",
+    "english_title": "Quality License and Market Control Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-assistant-deputy-of-consumer-affairs/quality-license-and-market-control/",
     "responsibilities": [
       "Implementing policies governing the supervision of market controls.",
@@ -309,7 +309,7 @@
   },
   {
     "order": 20,
-    "english_title": "Financial And Administrative Affairs",
+    "english_title": "Financial and Administrative Affairs Department",
     "source_url": "https://www.moci.gov.qa/en/about-the-ministry/departments/departments-under-the-deputy/financial-and-administrative-affairs/",
     "responsibilities": [
       "Implementing ministerial finance policies.",
