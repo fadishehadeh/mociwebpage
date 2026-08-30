@@ -54,7 +54,6 @@ $people = [
         'name_en' => 'Saleh Majid Al-Khulaifi',
         'role_ar' => 'وكيل الوزارة المساعد لشؤون الصناعة وتنمية الأعمال',
         'role_en' => 'Deputy Undersecretary for Industrial Affairs and Business Development',
-        'email' => 'Salkhulaifi@moci.gov.qa',
         'photo' => 'saleh-al-khulaifi.jpg',
         'bio_ar' => [
             'في صميم عمله دفع التنمية الصناعية وريادة الأعمال وجذب الاستثمار الأجنبي المباشر للمساهمة في تشكيل المشهد الاقتصادي في قطر، حيث ساهم في تطوير الاستراتيجية الوطنية للصناعة.',
@@ -367,7 +366,7 @@ foreach ($people as $p) {
     }
 
     $emailHtml = '';
-    if ($p['email']) {
+    if (!empty($p['email'])) {
         $emailHtml = '<div class="profile-photo-card__footer"><a class="profile-photo-card__email" href="mailto:' . e($p['email']) . '">' . e($p['email']) . '</a></div>';
     }
 

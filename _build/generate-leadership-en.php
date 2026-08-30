@@ -33,7 +33,6 @@ $people = [
         'slug' => 'saleh-al-khulaifi',
         'name_en' => 'Saleh Majid Al-Khulaifi',
         'role_en' => 'Deputy Undersecretary for Industrial Affairs and Business Development',
-        'email' => 'Salkhulaifi@moci.gov.qa',
         'photo' => 'saleh-al-khulaifi.jpg',
         'bio_en' => [
             'Focusing on driving industrial development, entrepreneurship, and attracting foreign direct investment to help in shaping Qatar\'s economic landscape, he helped develop and implement the national manufacturing strategy.',
@@ -326,7 +325,7 @@ foreach ($people as $p) {
     }
 
     $emailHtml = '';
-    if ($p['email']) {
+    if (!empty($p['email'])) {
         $emailHtml = '<div class="profile-photo-card__footer"><a class="profile-photo-card__email" href="mailto:' . e($p['email']) . '">' . e($p['email']) . '</a></div>';
     }
 
