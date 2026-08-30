@@ -61,7 +61,9 @@ $people = [
         'email' => null,
         'photo' => 'ali.jpg',
         'bio_en' => [
-            'Biography coming soon.',
+            'Mr. Ali Khalid Al-Khalifi currently serves as Assistant Undersecretary for Shared Services at the Ministry of Commerce and Industry. He brings over twenty-five years of experience in institutional management, digital transformation, government service development, and information technology. In his role, he oversees the development of the shared services ecosystem, enhancing institutional performance efficiency and raising service quality in line with the strategic objectives of the Ministry and the State.',
+            'Prior to his current appointment, he served as Director of the Planning, Quality and Innovation Department at the Ministry of Commerce and Industry from 2014 to 2024, and also headed the Information Systems Department from 2020 to 2023. He previously held leadership positions across government, semi-government, and private entities, including Executive Director of Business Support Services at Qatar Development Agency for SMEs, Executive Director of ICT Industry Development at the Supreme Council for Information and Communication Technology, and Business Development Manager at Vodafone Qatar, in addition to roles at Qatar Telecom and the Supreme Council for ICT.',
+            'Mr. Al-Khalifi holds a Bachelor\'s degree in Computer Science from Qatar University, an Executive MBA from HEC Paris in Doha, and a Project Management Professional (PMP) certification from the Project Management Institute (PMI).',
         ],
     ],
 ];
